@@ -4,7 +4,9 @@
 
 ## Installation
 - install transformers pakcage for using this as simple as posible
-  ```bash pip install -q transformers```
+  ```bash 
+    pip install -q transformers
+  ```
 ## How to use 
 
 ### TensorFlow 2.0 
@@ -30,3 +32,18 @@ tokenizer = BertTokenizer.from_pretrained(model_name)
 ```
 
 ## Examples
+
+### Pipeline 
+```python
+from transformers import pipeline
+
+qa_pipeline = pipeline("question-answering", model=model_name, tokenizer=model_name)
+
+context = 'امروز شنبه 5 آذر تولد من است'
+question = 'پنچ آذر چه مناسبتی است؟'
+
+qa_pipeline({'context': context, 'question': question})
+>>> {answer: 'تولد من'}
+```
+
+### Manually 
