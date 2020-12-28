@@ -1,14 +1,29 @@
 # PersianQA
 - Transformers models for Persian(Farsi) Question Answering
-- this model is not actually Persian but I use some tricks to improve it on the Persian Language 
+- these models are not actually Persian but I use some tricks to improve them on the Persian Language 
+
+# Model
+  - SajjadAyoubi/bert-base-fa-qa
+    - about 700MB it's ready both TF & Torch
+  - SajjadAyoubi/xlm-roberta-large-fa-qa
+    - about 2.4GB it's ready both TF & Torch
 
 ## Installation
 - install transformers pakcage for using this as simple as posible
 
   ```bash 
-      pip install -q transformers
+      !pip install -q transformers
   ```
+- if you use the xlm-roberta you need to install sentencepiece
+  
+  ```bash 
+      !pip install -q sentencepiece
+  ```
+  
+  
+  
 ## How to use 
+- these examples are base on the Bert Model 
 
 ### TensorFlow 2.0 
 
