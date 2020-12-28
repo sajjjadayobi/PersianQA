@@ -50,8 +50,10 @@ qa_pipeline({'context': context, 'question': question})
 >>> {answer: 'تولد من'}
 ```
 
-### Manually 
+### Manually (Pytorch)
 ```python
+import torch
+import numpy as np
 from transformers import AutoConfig, BertTokenizer, BertForQuestionAnswering
 
 model_name = 'SajjadAyoubi/bert-base-fa-qa'
@@ -64,17 +66,17 @@ question = 'پنچ آذر چه مناسبتی است؟'
 
 # tokenization
 inputs =  tokenizer.encode_plus(question, context)
-# predicttions
-predicts = model.forward(torch.tensor([inputs['input_ids']]), token_type_ids=torch.tensor([inputs['token_type_ids']]))
+# convert to tensor and predicttions 
+ids, token_type = torch.tensor([inputs['input_ids']]), torch.tensor([inputs['token_type_ids']])
+predicts = model.forward(ids, token_type_ids=token_type)
 
 # Find the tokens with the highest `start` and `end` scores.
 start_text = int(np.argwhere(np.array(inputs['input_ids'])==tokenizer.sep_token_id)[0])
-
 answer_start = torch.argmax(predicts['start_logits'][0][start_text:]) + start_text
 after_start = torch.squeeze(predicts['end_logits'])[answer_start:]
 answer_end = torch.argmax(after_start) + answer_start
 
-# Combine the tokens in the answer and print it out.
+# Combine the tokens and print.
 answer = ' '.join(tokens[answer_start:answer_end+1])
 print('Answer is: "' + answer + '"')
 ```
