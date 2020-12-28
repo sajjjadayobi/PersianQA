@@ -95,3 +95,7 @@ answer_end = torch.argmax(after_start) + answer_start
 answer = ' '.join(tokens[answer_start:answer_end+1])
 print('Answer is: "' + answer + '"')
 ```
+## Evaluation On ParsiNLU
+- when the model is alright but annotators are wrong 
+- ...
+
