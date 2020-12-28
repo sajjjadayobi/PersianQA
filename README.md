@@ -1,4 +1,4 @@
-# PersianQA
+# PersianQA: Without any Datasets 🙄 
 - Transformers models for Persian(Farsi) Question Answering
 - these models are not actually Persian but I use some tricks to improve them on the Persian Language 
 
@@ -8,7 +8,7 @@
   - SajjadAyoubi/xlm-roberta-large-fa-qa
     - about 2.4GB it's ready both TF & Torch
 
-## Installation
+## Installation 🤗
 - install transformers pakcage for using this as simple as posible
 
   ```bash 
@@ -58,11 +58,11 @@ from transformers import pipeline
 model_name = 'SajjadAyoubi/bert-base-fa-qa'
 qa_pipeline = pipeline("question-answering", model=model_name, tokenizer=model_name)
 
-context = 'امروز شنبه 5 آذر تولد من است'
-question = 'پنچ آذر چه مناسبتی است؟'
+ccontext = 'سلام من سجاد ایوبی هستم. به پردازش زبان طبیعی علاقه دارم و چون به نظرم خیلی جزابه هست'
+question = 'فامیلی من چیه؟'
 
 qa_pipeline({'context': context, 'question': question})
->>> {answer: 'تولد من'}
+>>> {answer: 'ایوبی'}
 ```
 
 ### Manually (Pytorch)
@@ -76,8 +76,8 @@ model = BertForQuestionAnswering.from_pretrained(model_name).eval()
 tokenizer = BertTokenizer.from_pretrained(model_name)
 
 # inputs
-context = 'امروز شنبه 5 آذر تولد من است'
-question = 'پنچ آذر چه مناسبتی است؟'
+ccontext = 'سلام من سجاد ایوبی هستم. به پردازش زبان طبیعی علاقه دارم و چون به نظرم خیلی جزابه هست'
+question = 'فامیلی من چیه؟'
 
 # tokenization
 inputs =  tokenizer.encode_plus(question, context)
