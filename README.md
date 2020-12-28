@@ -96,6 +96,11 @@ answer = ' '.join(tokens[answer_start:answer_end+1])
 print('Answer is: "' + answer + '"')
 ```
 ## Evaluation On ParsiNLU
-- when the model is alright but annotators are wrong 
-- ...
+- **Anybody who works in NLP knows that GLEU metrics aren't really well**
+- I got f1: 0.673, Exact: 0.413
+- But I believe that my model is better than these numbers
+  - I'll show you some examples
+### Some Examples that shows the F1 & Exact aren't good 
+- the prediction of model is also correct !! but f1 is zero
 
+![example_one](https://github.com/sajjjadayobi/PersianQA/blob/main/imgs/exam_1.png)
