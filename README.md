@@ -105,3 +105,8 @@ print('Answer is: "' + answer + '"')
 - the prediction of model is also correct !! but f1 is zero
 
 ![example_one](https://github.com/sajjjadayobi/PersianQA/blob/main/imgs/exam_1.png)
+
+- the prediction is more correcting than the gold answer but you get 0.3
+
+![example_tow](https://github.com/sajjjadayobi/PersianQA/blob/main/imgs/exam_2.png)
+- **I think you got the idea** 
