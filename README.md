@@ -97,7 +97,8 @@ print('Answer is: "' + answer + '"')
 ```
 ## Evaluation On ParsiNLU
 - **Anybody who works in NLP knows that GLEU metrics aren't really well**
-- I got f1: 0.673, Exact: 0.413
+- if you not sure about that fact answer the questions and compute your f1 and Exact 😊
+- <span style='color:green'>I got f1: 0.673, Exact: 0.413</span>
 - But I believe that my model is better than these numbers
   - I'll show you some examples
 ### Some Examples that shows the F1 & Exact aren't good 
