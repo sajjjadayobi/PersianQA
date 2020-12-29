@@ -98,7 +98,13 @@ print('Answer is: "' + answer + '"')
 ## Evaluation On ParsiNLU
 - **Anybody who works in NLP knows that GLEU metrics aren't really well**
 - if you not sure about that fact answer the questions and compute your f1 and Exact 😊
-- <span style='color:green'>I got f1: 0.673, Exact: 0.413</span>
+- <span style='color:red'>I got f1: 0.6936, Exact: 0.4173 </span>
+
+| Model | f1 score | exact match |
+| --- | --- | --- |
+| My XLM-Roberta | 69.36% | 41.73% |
+
+
 - But I believe that my model is better than these numbers
   - I'll show you some examples
 ### Some Examples that shows the F1 & Exact aren't good 
