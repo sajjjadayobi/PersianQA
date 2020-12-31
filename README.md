@@ -102,7 +102,7 @@ print('Answer is: "' + answer + '"')
 
   | Model | F1 Score | Exact Match |
   |  :---:  |  :---:  | :---: |
-  | Our XLM-Roberta | 69.36% | 41.73% |
+  | Our XLM-Roberta | 71.08% | 47.82% |
 
 
 - But I believe that my model is better than these numbers
