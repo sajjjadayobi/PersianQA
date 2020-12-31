@@ -3,9 +3,9 @@
 - these models are not actually Persian but I use some tricks to improve them on the Persian Language 
 
 # Model
-  - SajjadAyoubi/bert-base-fa-qa
+  - [bert-base-fa-qa](https://huggingface.co/SajjadAyoubi/bert-base-fa-qa)
     - about 700MB it's ready both TF & Torch
-  - SajjadAyoubi/xlm-roberta-large-fa-qa
+  - [xlm-roberta-large-fa-qa](https://huggingface.co/SajjadAyoubi/xlm-roberta-large-fa-qa)
     - about 2.4GB it's ready both TF & Torch
 
 ## Installation 🤗
@@ -106,13 +106,3 @@ print('Answer is: "' + answer + '"')
 
 
 - But I believe that my model is better than these numbers
-  - I'll show you some examples
-### Some Examples that shows the F1 & Exact aren't good 
-- the prediction of model is also correct !! but f1 is zero
-
-![example_one](https://github.com/sajjjadayobi/PersianQA/blob/main/imgs/exam_1.png)
-
-- the prediction is more correcting than the gold answer but you get 0.3
-
-![example_tow](https://github.com/sajjjadayobi/PersianQA/blob/main/imgs/exam_2.png)
-- **I think you got the idea** 
