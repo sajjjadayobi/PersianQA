@@ -58,7 +58,7 @@ from transformers import pipeline
 model_name = 'SajjadAyoubi/bert-base-fa-qa'
 qa_pipeline = pipeline("question-answering", model=model_name, tokenizer=model_name)
 
-ccontext = 'سلام من سجاد ایوبی هستم. به پردازش زبان طبیعی علاقه دارم و چون به نظرم خیلی جزابه هست'
+ccontext = 'من سجاد ایوبی هستم. به پردازش زبان طبیعی علاقه دارم و چون به نظرم خیلی جزابه هست'
 question = 'فامیلی من چیه؟'
 
 qa_pipeline({'context': context, 'question': question})
@@ -68,32 +68,28 @@ qa_pipeline({'context': context, 'question': question})
 ### Manually (Pytorch)
 ```python
 import torch
-import numpy as np
-from transformers import AutoConfig, BertTokenizer, BertForQuestionAnswering
+from transformers import AutoTokenizer, AutoModelForQuestionAnswering
 
 model_name = 'SajjadAyoubi/bert-base-fa-qa'
-model = BertForQuestionAnswering.from_pretrained(model_name).eval()
-tokenizer = BertTokenizer.from_pretrained(model_name)
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+model = AutoModelForQuestionAnswering.from_pretrained(model_name).eval()
 
-# inputs
-ccontext = 'سلام من سجاد ایوبی هستم. به پردازش زبان طبیعی علاقه دارم و چون به نظرم خیلی جزابه هست'
-question = 'فامیلی من چیه؟'
+text = 'من سجاد ایوبی هستم. به پردازش زبان طبیعی علاقه دارم و چون به نظرم خیلی جزابه هست'
+questions = ["فامیلی من چیه؟",
+             "به چی علاقه دارم؟",]
 
-# tokenization
-inputs =  tokenizer.encode_plus(question, context)
-# convert to tensor and predicttions 
-ids, token_type = torch.tensor([inputs['input_ids']]), torch.tensor([inputs['token_type_ids']])
-predicts = model.forward(ids, token_type_ids=token_type)
-
-# Find the tokens with the highest `start` and `end` scores.
-start_text = int(np.argwhere(np.array(inputs['input_ids'])==tokenizer.sep_token_id)[0])
-answer_start = torch.argmax(predicts['start_logits'][0][start_text:]) + start_text
-after_start = torch.squeeze(predicts['end_logits'])[answer_start:]
-answer_end = torch.argmax(after_start) + answer_start
-
-# Combine the tokens and print.
-answer = ' '.join(tokens[answer_start:answer_end+1])
-print('Answer is: "' + answer + '"')
+for question in questions:
+    inputs = tokenizer(question, text, add_special_tokens=True, return_tensors="pt")
+    input_ids = inputs["input_ids"].tolist()[0]
+    text_tokens = tokenizer.convert_ids_to_tokens(input_ids)
+    outputs = model(**inputs)
+  
+    answer_start = torch.argmax(outputs.start_logits)
+    answer_end = torch.argmax(outputs.end_logits[0][answer_start:]) + answer_start + 1
+    
+    answer = tokenizer.convert_tokens_to_string(tokenizer.convert_ids_to_tokens(input_ids[answer_start:answer_end]))
+    print(f"Question: {question}")
+    print(f"Answer: {answer}")
 ```
 ## Evaluation On ParsiNLU
 - **Anybody who works in NLP knows that GLEU metrics aren't really well**
