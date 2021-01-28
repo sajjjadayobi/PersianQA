@@ -7,6 +7,9 @@
     - about 700MB it's ready both TF & Torch
   - [xlm-roberta-large-fa-qa](https://huggingface.co/SajjadAyoubi/xlm-roberta-large-fa-qa)
     - about 2.4GB it's ready both TF & Torch
+    
+## Online Tester
+  - on [Colab](https://colab.research.google.com/drive/1Y7yisfVnhFYtzw7KvE3QFbruzvGe0qgk?usp=sharing)
 
 ## Installation 🤗
 - install transformers pakcage for using this as simple as posible
