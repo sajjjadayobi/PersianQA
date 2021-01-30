@@ -1,6 +1,6 @@
 # PersianQA: Without any Datasets 🙄 
 - Transformers models for Persian(Farsi) Question Answering
-- these models are not actually Persian but I use some tricks to improve them on the Persian Language 
+- these models are not actually Persian (multilingual) but works well on the Persian Language 
 
 # Model
   - [bert-base-fa-qa](https://huggingface.co/SajjadAyoubi/bert-base-fa-qa)
@@ -15,15 +15,10 @@
 - install transformers pakcage for using this as simple as posible
 
   ```bash 
-      !pip install -q transformers
+  !pip install -q transformers
+  !pip install -q sentencepiece
+  !pip install -q tokenizer
   ```
-- if you use the xlm-roberta you need to install sentencepiece
-  
-  ```bash 
-      !pip install -q sentencepiece
-  ```
-  
-  
   
 ## How to use 
 - these examples are base on the Bert Model 
@@ -61,7 +56,7 @@ from transformers import pipeline
 model_name = 'SajjadAyoubi/bert-base-fa-qa'
 qa_pipeline = pipeline("question-answering", model=model_name, tokenizer=model_name)
 
-ccontext = 'من سجاد ایوبی هستم. به پردازش زبان طبیعی علاقه دارم و چون به نظرم خیلی جزابه هست'
+ccontext = 'من سجاد ایوبی هستم. به پردازش زبان طبیعی علاقه دارم '
 question = 'فامیلی من چیه؟'
 
 qa_pipeline({'context': context, 'question': question})
@@ -77,7 +72,7 @@ model_name = 'SajjadAyoubi/bert-base-fa-qa'
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForQuestionAnswering.from_pretrained(model_name).eval()
 
-text = 'من سجاد ایوبی هستم. به پردازش زبان طبیعی علاقه دارم و چون به نظرم خیلی جزابه هست'
+text = 'من سجاد ایوبی هستم. به پردازش زبان طبیعی علاقه دارم'
 questions = ["فامیلی من چیه؟",
              "به چی علاقه دارم؟",]
 
@@ -103,5 +98,4 @@ for question in questions:
   |  :---:  |  :---:  | :---: |
   | Our XLM-Roberta | 71.08% | 47.82% |
 
-
-- But I believe that my model is better than these numbers
+- But I believe that the model is better than these numbers
