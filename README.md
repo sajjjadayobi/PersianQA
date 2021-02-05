@@ -1,6 +1,10 @@
-# PersianQA: Without any Datasets 🙄 
+# PersianQA: First Models and Dataset For Persian Question Answering 🙄 
 - Transformers models for Persian(Farsi) Question Answering
 - these models are not actually Persian (multilingual) but works well on the Persian Language 
+
+## Online Tester on [Colab](https://colab.research.google.com/drive/1Y7yisfVnhFYtzw7KvE3QFbruzvGe0qgk?usp=sharing)
+
+# Dataset:
 
 # Model
   - [bert-base-fa-qa](https://huggingface.co/SajjadAyoubi/bert-base-fa-qa)
@@ -8,12 +12,9 @@
   - [xlm-roberta-large-fa-qa](https://huggingface.co/SajjadAyoubi/xlm-roberta-large-fa-qa)
     - about 2.4GB it's ready both TF & Torch
     
-## Online Tester
-  - on [Colab](https://colab.research.google.com/drive/1Y7yisfVnhFYtzw7KvE3QFbruzvGe0qgk?usp=sharing)
 
 ## Installation 🤗
-- install transformers pakcage for using this as simple as posible
-
+- install transformers package for using this as simple as posible
   ```bash 
   !pip install -q transformers
   !pip install -q sentencepiece
@@ -63,7 +64,9 @@ qa_pipeline({'context': context, 'question': question})
 >>> {answer: 'ایوبی'}
 ```
 
-### Manually (Pytorch)
+### Manually 
+
+#### Pytorch
 ```python
 import torch
 from transformers import AutoTokenizer, AutoModelForQuestionAnswering
@@ -89,7 +92,14 @@ for question in questions:
     print(f"Question: {question}")
     print(f"Answer: {answer}")
 ```
-## Evaluation On ParsiNLU
+#### Tensorflow 2.0
+```python
+import tensorflow as tf
+from transformers import AutoTokenizer, AutoTFModelForQuestionAnswering
+```
+
+## Evaluation
+### On ParsiNLU
 - **Anybody who works in NLP knows that GLEU metrics aren't really well**
 - if you not sure about that fact answer the questions and compute your f1 and Exact 😊
 
