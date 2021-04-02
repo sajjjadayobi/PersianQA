@@ -103,7 +103,7 @@ from transformers import AutoTokenizer, AutoTFModelForQuestionAnswering
 
   | Model | F1 Score | Exact Match |
   |  :---:  |  :---:  | :---: |
-  | Our XLM-Roberta | 71.08% | 47.82% |
+  | Our XLM-Roberta | 72.88% | 50.70% |
 
 - But I believe that the model is better than these numbers
 
