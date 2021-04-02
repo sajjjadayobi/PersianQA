@@ -1,8 +1,5 @@
 # PersianQA: First Models and Dataset For Persian Question Answering 🙄 
 - Transformers models for Persian(Farsi) Question Answering
-- these models are not actually Persian (multilingual) but works well on the Persian Language 
-
-## Online Tester on [Colab](https://colab.research.google.com/drive/1Y7yisfVnhFYtzw7KvE3QFbruzvGe0qgk?usp=sharing)
 
 # Dataset:
 
@@ -117,7 +114,7 @@ I didn't publish any paper about this work, but! Please cite in your publication
 
 ```bibtex
 @misc{PersianQA,
-  author = {Sajjad Ayoubi, Mohammad Yasin Davode},
+  author = {Sajjad Ayoubi, Muhammad Yasin Davoodeh},
   title = {PersianQA: Persian Question Answersing with Dataset & Models},
   year = {2021},
   publisher = {GitHub},
