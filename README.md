@@ -109,3 +109,19 @@ from transformers import AutoTokenizer, AutoTFModelForQuestionAnswering
   | Our XLM-Roberta | 71.08% | 47.82% |
 
 - But I believe that the model is better than these numbers
+
+
+# Cite
+
+I didn't publish any paper about this work, but! Please cite in your publication as the following:
+
+```bibtex
+@misc{PersianQA,
+  author = {Sajjad Ayoubi, Mohammad Yasin Davode},
+  title = {PersianQA: Persian Question Answersing with Dataset & Models},
+  year = {2021},
+  publisher = {GitHub},
+  journal = {GitHub repository},
+  howpublished = {\url{https://github.com/sajjjadayobi/PersianQA}},
+}
+```
