@@ -2,6 +2,11 @@
 - Transformers models for Persian(Farsi) Question Answering
 
 # Dataset:
+- it's available in:
+  - github
+  - kaggle datasets
+  - huggingface datasets
+  - paperswithcode datasets
 
 # Model
   - [bert-base-fa-qa](https://huggingface.co/SajjadAyoubi/bert-base-fa-qa)
