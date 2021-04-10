@@ -2,6 +2,14 @@
 <a href="https://huggingface.co/"><img src="https://img.shields.io/static/v1?label=%F0%9F%A4%97%20Hugging%20Face&message=Click&color=yellow"></a>
 <a href="https://paperswithcode.com/"><img src="https://img.shields.io/static/v1?label=%F0%9F%93%8E%20Papers%20With%20Code&message=Click&color=21cbce"></a>
 
+# PersianQA: a dataset for Persian Question Answering
+
+The dataset provided here has more than 9,000 training data and about 900 test
+data available.
+
+Moreover, the first models trained on the dataset, Transformers, are available.
+
+
 <!-- markdown-toc start - Don't edit this section manually. -->
 
 **Table of Contents**
@@ -22,13 +30,6 @@
 - [Citation](#citation)
 
 <!-- markdown-toc end -->
-
-# PersianQA: a dataset for Persian Question Answering
-
-The dataset provided here has more than 9,000 training data and about 900 test
-data available.
-
-Moreover, the first models trained on the dataset, Transformers, are available.
 
 ## Models
 
@@ -164,11 +165,12 @@ the results are as shown below.
 |           Model            | F1 Score | Exact Match |
 | :------------------------: | :------: | :---------: |
 | Our version of XLM-Roberta |  72.88%  |   50.70%    |
+| Our version of ParsBERT    |  56.88%  |   43.70%    |
+
 
 # Citation
 
-we didn't publish any paper about this work, but! Please cite in your
-publication as the following: Yet, we didn't publish any papers on the work.
+Yet, we didn't publish any papers on the work.
 However, if you did, please cite us properly with an entry like one below.
 
 ```bibtex
