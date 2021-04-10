@@ -1,128 +1,183 @@
-# PersianQA: First Models and Dataset For Persian Question Answering 
-- PersianQA dataset (9k Train, 900 Test)
-- Transformers models for Persian(Farsi) Question Answering
+<a href="https://www.kaggle.com/"><img alt="Kaggle" src="https://img.shields.io/static/v1?label=Kaggle&message=Click&logo=Kaggle&color=20BEFF"/></a>
+<a href="https://huggingface.co/"><img src="https://img.shields.io/static/v1?label=%F0%9F%A4%97%20Hugging%20Face&message=Click&color=yellow"></a>
+<a href="https://paperswithcode.com/"><img src="https://img.shields.io/static/v1?label=%F0%9F%93%8E%20Papers%20With%20Code&message=Click&color=21cbce"></a>
 
-# Dataset:
-- it's available on:
-  - this github repo
-  - kaggle datasets
-  - huggingface datasets
-  - paperswithcode datasets
+<!-- markdown-toc start - Don't edit this section manually. -->
 
+**Table of Contents**
 
-# Model
-  - [bert-base-fa-qa](https://huggingface.co/SajjadAyoubi/bert-base-fa-qa)
-  - [xlm-roberta-large-fa-qa](https://huggingface.co/SajjadAyoubi/xlm-roberta-large-fa-qa)
+- [PersianQA: a dataset for Persian Question Answering](#persianqa-a-dataset-for-persian-question-answering)
+  - [Models](#models)
+    - [Installation](#installation)
+    - [Examples](#examples)
+      - [Transformers](#transformers)
+        - [TensorFlow 2.0](#tensorflow-20)
+        - [PyTorch](#pytorch)
+      - [Pipelines](#pipelines)
+      - [Manual approach](#manual-approach)
+        - [PyTorch](#pytorch-1)
+        - [TensorFlow 2.0](#tensorflow-20-1)
+    - [Evaluation](#evaluation)
+      - [On ParsiNLU](#on-parsinlu)
+- [Citation](#citation)
 
-## Installation 🤗
-- install transformers package for using this as simple as posible
-  ```bash 
-  !pip install -q transformers
-  !pip install -q sentencepiece
-  !pip install -q tokenizer
-  ```
-  
-## How to use 
-- these examples are base on the Bert Model 
+<!-- markdown-toc end -->
 
-### TensorFlow 2.0 
+# PersianQA: a dataset for Persian Question Answering
+
+The dataset provided here has more than 9,000 training data and about 900 test
+data available.
+
+Moreover, the first models trained on the dataset, Transformers, are available.
+
+## Models
+
+Currently, two models on [Hugging Face](https://huggingface.co/SajjadAyoubi/)
+are using the dataset.
+
+- [bert-base-fa-qa](https://huggingface.co/SajjadAyoubi/bert-base-fa-qa)
+- [xlm-roberta-large-fa-qa](https://huggingface.co/SajjadAyoubi/xlm-roberta-large-fa-qa)
+
+If you trained any model on the dataset, we'd be more than glad to hear the
+details. Please, make a pull request for that regards.
+
+### Installation
+
+Transformers require `transformers`, `sentencepiece` and `tokenizer`, which can
+be installed using `pip`.
+
+```sh
+pip install transformers sentencepiece tokenizer
+```
+
+### Examples
+
+All the examples are based on the Bert version.
+
+#### Transformers
+
+##### TensorFlow 2.0
 
 ```python
 from transformers import AutoConfig, BertTokenizer, TFBertForQuestionAnswering
 
-model_name = 'SajjadAyoubi/bert-base-fa-qa'
-model = TFBertForQuestionAnswering.from_pretrained(model_name).
+model_name = "SajjadAyoubi/bert-base-fa-qa"
+model = TFBertForQuestionAnswering.from_pretrained(model_name)
 config = AutoConfig.from_pretrained(model_name)
 tokenizer = BertTokenizer.from_pretrained(model_name)
 ```
 
-### Pytorch
+##### PyTorch
 
 ```python
 from transformers import AutoConfig, BertTokenizer, BertForQuestionAnswering
 
-model_name = 'SajjadAyoubi/bert-base-fa-qa'
+model_name = "SajjadAyoubi/bert-base-fa-qa"
 model = BertForQuestionAnswering.from_pretrained(model_name)
 config = AutoConfig.from_pretrained(model_name)
 tokenizer = BertTokenizer.from_pretrained(model_name)
 ```
 
-## Examples
-- if you are not fimilar with Transformers use pipeline
-- if you wanna more access to the model use manually
+#### Pipelines
 
-### Pipeline 
+In case you are not familiar with Transformers, you can use pipelines instead.
+
 ```python
 from transformers import pipeline
 
-model_name = 'SajjadAyoubi/bert-base-fa-qa'
-qa_pipeline = pipeline("question-answering", model=model_name, tokenizer=model_name)
+model_name = "SajjadAyoubi/bert-base-fa-qa"
+qa_pipeline = pipeline(
+    "question-answering",
+    model=model_name,
+    tokenizer=model_name,
+)
 
-ccontext = 'من سجاد ایوبی هستم. به پردازش زبان طبیعی علاقه دارم '
-question = 'فامیلی من چیه؟'
+context = "من سجاد ایوبی هستم. به پردازش زبان طبیعی علاقه دارم"
+question = "فامیلی من چیه؟"
 
-qa_pipeline({'context': context, 'question': question})
->>> {answer: 'ایوبی'}
+qa_pipeline(
+    {
+        "context": context,
+        "question": question,
+    }
+)
+
+# >>> {answer: "ایوبی"}
+
 ```
 
-### Manually 
+#### Manual approach
 
-#### Pytorch
+##### PyTorch
+
 ```python
+
 import torch
 from transformers import AutoTokenizer, AutoModelForQuestionAnswering
 
-model_name = 'SajjadAyoubi/bert-base-fa-qa'
+model_name = "SajjadAyoubi/bert-base-fa-qa"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForQuestionAnswering.from_pretrained(model_name).eval()
 
-text = 'من سجاد ایوبی هستم. به پردازش زبان طبیعی علاقه دارم'
-questions = ["فامیلی من چیه؟",
-             "به چی علاقه دارم؟",]
+text = "من سجاد ایوبی هستم. به پردازش زبان طبیعی علاقه دارم"
+questions = [
+    "فامیلی من چیه؟",
+    "به چی علاقه دارم؟",
+]
 
 for question in questions:
-    inputs = tokenizer(question, text, add_special_tokens=True, return_tensors="pt")
+    inputs = tokenizer(
+        question,
+        text,
+        add_special_tokens=True,
+        return_tensors="pt",
+    )
     input_ids = inputs["input_ids"].tolist()[0]
+
     text_tokens = tokenizer.convert_ids_to_tokens(input_ids)
     outputs = model(**inputs)
-  
+
     answer_start = torch.argmax(outputs.start_logits)
     answer_end = torch.argmax(outputs.end_logits[0][answer_start:]) + answer_start + 1
-    
-    answer = tokenizer.convert_tokens_to_string(tokenizer.convert_ids_to_tokens(input_ids[answer_start:answer_end]))
+
+    answer = tokenizer.convert_tokens_to_string(
+        tokenizer.convert_ids_to_tokens(input_ids[answer_start:answer_end])
+    )
     print(f"Question: {question}")
     print(f"Answer: {answer}")
 ```
-#### Tensorflow 2.0
+
+##### TensorFlow 2.0
+
 ```python
 import tensorflow as tf
 from transformers import AutoTokenizer, AutoTFModelForQuestionAnswering
 ```
 
-## Evaluation
-### On ParsiNLU
-- **Anybody who works in NLP knows that GLEU metrics aren't really well**
-- if you not sure about that fact answer the questions and compute your f1 and Exact 😊
+### Evaluation
 
+#### On ParsiNLU
 
-  | Model | F1 Score | Exact Match |
-  |  :---:  |  :---:  | :---: |
-  | Our XLM-Roberta | 72.88% | 50.70% |
+Although, the GLEU metrics are not the best measures to evaluate the model on,
+the results are as shown below.
 
-- But I believe that the model is better than these numbers
+|           Model            | F1 Score | Exact Match |
+| :------------------------: | :------: | :---------: |
+| Our version of XLM-Roberta |  72.88%  |   50.70%    |
 
+# Citation
 
-# Cite
-
-we didn't publish any paper about this work, but! Please cite in your publication as the following:
+we didn't publish any paper about this work, but! Please cite in your
+publication as the following: Yet, we didn't publish any papers on the work.
+However, if you did, please cite us properly with an entry like one below.
 
 ```bibtex
 @misc{PersianQA,
-  author = {Sajjad Ayoubi, Muhammad Yasin Davoodeh},
-  title = {PersianQA: Persian Question Answersing with Dataset & Models},
-  year = {2021},
-  publisher = {GitHub},
-  journal = {GitHub repository},
-  howpublished = {\url{https://github.com/sajjjadayobi/PersianQA}},
+  author          = {Ayoubi, Sajjad \& Davoodeh, Mohammad Yasin},
+  title           = {PersianQA: a dataset for Persian Question Answering},
+  year            = 2021,
+  publisher       = {GitHub},
+  journal         = {GitHub repository},
+  howpublished    = {\url{https://github.com/SajjjadAyobi/PersianQA}},
 }
 ```
