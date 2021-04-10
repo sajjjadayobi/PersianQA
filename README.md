@@ -1,19 +1,18 @@
-# PersianQA: First Models and Dataset For Persian Question Answering 🙄 
+# PersianQA: First Models and Dataset For Persian Question Answering 
+- PersianQA dataset (9k Train, 900 Test)
 - Transformers models for Persian(Farsi) Question Answering
 
 # Dataset:
-- it's available in:
-  - github
+- it's available on:
+  - this github repo
   - kaggle datasets
   - huggingface datasets
   - paperswithcode datasets
 
+
 # Model
   - [bert-base-fa-qa](https://huggingface.co/SajjadAyoubi/bert-base-fa-qa)
-    - about 700MB it's ready both TF & Torch
   - [xlm-roberta-large-fa-qa](https://huggingface.co/SajjadAyoubi/xlm-roberta-large-fa-qa)
-    - about 2.4GB it's ready both TF & Torch
-    
 
 ## Installation 🤗
 - install transformers package for using this as simple as posible
@@ -115,7 +114,7 @@ from transformers import AutoTokenizer, AutoTFModelForQuestionAnswering
 
 # Cite
 
-I didn't publish any paper about this work, but! Please cite in your publication as the following:
+we didn't publish any paper about this work, but! Please cite in your publication as the following:
 
 ```bibtex
 @misc{PersianQA,
