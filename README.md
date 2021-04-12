@@ -62,7 +62,6 @@ for question in questions:
 - Pytorch
 ```python
 from transformers import AutoTokenizer, AutoModelForQuestionAnswering
-import torch
 
 model_name = "SajjadAyoubi/bert-base-fa-qa"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
@@ -71,16 +70,24 @@ model = AutoModelForQuestionAnswering.from_pretrained(model_name)
 text = r"""سلام من سجاد ایوبی هستم ۲۰ سالمه و به پردازش زبان طبیعی علاقه دارم """
 questions = ["اسمم چیه؟", "چند سالمه؟", "به چی علاقه دارم؟"]
 
-# this class is from PersianQA/utils and you can read more about it
-infer = QAInference(model, tokenizer, device='cuda', n_best=10)
-preds = infer(questions, contexts*3, batch_size=3)
-print(preds)
+# this class is from src/utils.py and you can read more about it
+infer = TFQAInference(model, tokenizer, device='cpu', n_best=10)
+preds = infer(questions, [text]*3, batch_size=3)
+
+for k, v in preds.items():
+    print(v)
 ```
+  - output is
+  ```sh
+  100%|██████████| 1/1 [00:00<00:00,  3.56it/s]
+  {'score': 8.040637016296387, 'text': 'سجاد ایوبی'}
+  {'score': 9.901972770690918, 'text': '۲۰ سالمه'}
+  {'score': 12.117212295532227, 'text': 'پردازش زبان طبیعی'}
+  ```
 
 - TensorFlow 2.X
 ```python
 from transformers import AutoTokenizer, AutoTFModelForQuestionAnswering
-import tensorflow as tf
 
 model_name = "SajjadAyoubi/bert-base-fa-qa"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
@@ -89,11 +96,20 @@ model = AutoTFModelForQuestionAnswering.from_pretrained(model_name)
 text = r"""سلام من سجاد ایوبی هستم ۲۰ سالمه و به پردازش زبان طبیعی علاقه دارم """
 questions = ["اسمم چیه؟", "چند سالمه؟", "به چی علاقه دارم؟"]
 
-# this class is from PersianQA/utils and you can read more about it
-infer = TFQAInference(model, tokenizer, device='cuda', n_best=10)
-preds = infer(questions, contexts*3, batch_size=3)
-print(preds)
+# this class is from src/utils.py and you can read more about it
+infer = TFQAInference(model, tokenizer, device='cpu', n_best=10)
+preds = infer(questions, [text]*3, batch_size=3)
+
+for k, v in preds.items():
+    print(v)
 ```
+  - output is
+  ```sh
+  100%|██████████| 1/1 [00:00<00:00,  3.56it/s]
+  {'score': 8.040637016296387, 'text': 'سجاد ایوبی'}
+  {'score': 9.901972770690918, 'text': '۲۰ سالمه'}
+  {'score': 12.117212295532227, 'text': 'پردازش زبان طبیعی'}
+  ```
 
 ### Evaluation
 Although, the GLEU metrics are not the best measures to evaluate the model on,
