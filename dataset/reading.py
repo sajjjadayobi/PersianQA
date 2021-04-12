@@ -6,24 +6,20 @@ def read_qa(path):
     this reads dataset from json files like SQuAD v2
     you can use this function for loading train and test file
     """
-    path = Path(path)
     ds = []
-    with open(path, encoding="utf-8") as f:
+    with open(Path(path), encoding="utf-8") as f:
         squad = json.load(f)
     for example in squad["data"]:
         title = example.get("title", "").strip()
         for paragraph in example["paragraphs"]:
-            context = paragraph["context"].strip()
             for qa in paragraph["qas"]:
-                question = qa["question"].strip()
-                id_ = qa["id"]
                 answer_starts = [answer["answer_start"] for answer in qa["answers"]]
                 answers = [answer["text"].strip() for answer in qa["answers"]]
                 ds.append({
                   "title": title,
-                  "context": context,
-                  "question": question,
-                  "id": id_,
+                  "context": paragraph["context"].strip(),
+                  "question": qa["question"].strip(),
+                  "id": qa["id"],
                   "answers": {
                       "answer_start": answer_starts,
                       "text": answers},})
