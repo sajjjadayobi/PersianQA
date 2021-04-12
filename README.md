@@ -48,12 +48,12 @@ qa_pipeline = pipeline("question-answering", model=model_name, tokenizer=model_n
 text = r"""سلام من سجاد ایوبی هستم ۲۰ سالمه و به پردازش زبان طبیعی علاقه دارم """
 questions = ["اسمم چیه؟", "چند سالمه؟", "به چی علاقه دارم؟"]
 
-for i in questions:
+for question in questions:
     print(qa_pipeline({"context": text, "question": question}))
 
-# >>> {answer: 'سجاد ایوبی'}
-# >>> {}
-# >>> {}
+# >>> {'score': 0.4839823544025421, 'start': 8, 'end': 18, 'answer': 'سجاد ایوبی'}
+# >>> {'score': 0.3747948706150055, 'start': 24, 'end': 32, 'answer': '۲۰ سالمه'}
+# >>> {'score': 0.5945395827293396, 'start': 38, 'end': 55, 'answer': 'پردازش زبان طبیعی'}
 ```
 
 #### Manual approach
