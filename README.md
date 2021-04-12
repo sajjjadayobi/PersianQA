@@ -57,7 +57,7 @@ for question in questions:
 ```
 
 #### Manual approach
-- using Manual approach you can have no answer and better performance
+using Manual approach you can have no answer and better performance
 
 - Pytorch
 ```python
@@ -71,8 +71,8 @@ text = r"""سلام من سجاد ایوبی هستم ۲۰ سالمه و به پ
 questions = ["اسمم چیه؟", "چند سالمه؟", "به چی علاقه دارم؟"]
 
 # this class is from src/utils.py and you can read more about it
-infer = TFQAInference(model, tokenizer, device='cpu', n_best=10)
-preds = infer(questions, [text]*3, batch_size=3)
+predictor = AnswerPredictor(model, tokenizer, device='cpu', n_best=10)
+preds = predictor(questions, [text]*3, batch_size=3)
 
 for k, v in preds.items():
     print(v)
@@ -97,8 +97,8 @@ text = r"""سلام من سجاد ایوبی هستم ۲۰ سالمه و به پ
 questions = ["اسمم چیه؟", "چند سالمه؟", "به چی علاقه دارم؟"]
 
 # this class is from src/utils.py and you can read more about it
-infer = TFQAInference(model, tokenizer, device='cpu', n_best=10)
-preds = infer(questions, [text]*3, batch_size=3)
+predictor = TFAnswerPredictor(model, tokenizer, device='cpu', n_best=10)
+preds = predictor(questions, [text]*3, batch_size=3)
 
 for k, v in preds.items():
     print(v)
@@ -119,7 +119,7 @@ the results are as shown below.
 |           Model            | F1 Score | Exact Match |
 | :------------------------: | :------: | :---------: |
 | Our version of XLM-Roberta |  73.44%  |   50.70%    |
-| Our version of ParsBERT    |  61.50%  |   43.70%    |
+| Our version of ParsBERT    |  62.60%  |   35.43%    |
 
 
 #### On PersianQA testset
