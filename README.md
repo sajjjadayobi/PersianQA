@@ -8,7 +8,7 @@ The dataset provided here has more than 9,000 training data and about 900 test d
 Moreover, the first models trained on the dataset, Transformers, are available.
 
 ## Data
-- Discribtions
+- Descriptions
 - access
 - Example
 - Stats
@@ -56,9 +56,10 @@ for i in questions:
 # >>> {}
 ```
 
-#### Manual approach (PyTorch)
+#### Manual approach
 - using Manual approach you can have no answer and better performance
 
+- Pytorch
 ```python
 from transformers import AutoTokenizer, AutoModelForQuestionAnswering
 import torch
@@ -76,25 +77,36 @@ preds = infer(questions, contexts*3, batch_size=3)
 print(preds)
 ```
 
-##### TensorFlow 2.0
-
+- TensorFlow 2.X
 ```python
-import tensorflow as tf
 from transformers import AutoTokenizer, AutoTFModelForQuestionAnswering
+import tensorflow as tf
+
+model_name = "SajjadAyoubi/bert-base-fa-qa"
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+model = AutoTFModelForQuestionAnswering.from_pretrained(model_name)
+
+text = r"""سلام من سجاد ایوبی هستم ۲۰ سالمه و به پردازش زبان طبیعی علاقه دارم """
+questions = ["اسمم چیه؟", "چند سالمه؟", "به چی علاقه دارم؟"]
+
+# this class is from PersianQA/utils and you can read more about it
+infer = TFQAInference(model, tokenizer, device='cuda', n_best=10)
+preds = infer(questions, contexts*3, batch_size=3)
+print(preds)
 ```
 
 ### Evaluation
 Although, the GLEU metrics are not the best measures to evaluate the model on,
 the results are as shown below.
 
-- On ParsiNLU 
+#### On ParsiNLU 
 |           Model            | F1 Score | Exact Match |
 | :------------------------: | :------: | :---------: |
 | Our version of XLM-Roberta |  73.44%  |   50.70%    |
 | Our version of ParsBERT    |  61.50%  |   43.70%    |
 
 
-- On PersianQA testset
+#### On PersianQA testset
 |           Model            | F1 Score | Exact Match |
 | :------------------------: | :------: | :---------: |
 | Our version of XLM-Roberta |  72.88%  |   50.70%    |
