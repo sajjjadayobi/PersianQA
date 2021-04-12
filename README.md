@@ -4,148 +4,76 @@
 
 # PersianQA: a dataset for Persian Question Answering
 
-The dataset provided here has more than 9,000 training data and about 900 test
-data available.
-
+The dataset provided here has more than 9,000 training data and about 900 test data available.
 Moreover, the first models trained on the dataset, Transformers, are available.
 
-
-<!-- markdown-toc start - Don't edit this section manually. -->
-
-**Table of Contents**
-
-- [PersianQA: a dataset for Persian Question Answering](#persianqa-a-dataset-for-persian-question-answering)
-  - [Models](#models)
-    - [Installation](#installation)
-    - [Examples](#examples)
-      - [Transformers](#transformers)
-        - [TensorFlow 2.0](#tensorflow-20)
-        - [PyTorch](#pytorch)
-      - [Pipelines](#pipelines)
-      - [Manual approach](#manual-approach)
-        - [PyTorch](#pytorch-1)
-        - [TensorFlow 2.0](#tensorflow-20-1)
-    - [Evaluation](#evaluation)
-      - [On ParsiNLU](#on-parsinlu)
-- [Citation](#citation)
-
-<!-- markdown-toc end -->
+## Data
+- Discribtions
+- access
+- Example
+- Stats
 
 ## Models
 
-Currently, two models on [Hugging Face](https://huggingface.co/SajjadAyoubi/)
-are using the dataset.
+Currently, two models on [Hugging Face](https://huggingface.co/SajjadAyoubi/) are using the dataset.
 
 - [bert-base-fa-qa](https://huggingface.co/SajjadAyoubi/bert-base-fa-qa)
+  -  fine-tuned with PersianQA
 - [xlm-roberta-large-fa-qa](https://huggingface.co/SajjadAyoubi/xlm-roberta-large-fa-qa)
+  -  fine-tuned with SQuAD v2 + PersianQA
 
 If you trained any model on the dataset, we'd be more than glad to hear the
 details. Please, make a pull request for that regards.
 
-### Installation
+- Installation
 
-Transformers require `transformers`, `sentencepiece` and `tokenizer`, which can
-be installed using `pip`.
-
+Transformers require `transformers` and `sentencepiece`, which can be installed using `pip`.
 ```sh
-pip install transformers sentencepiece tokenizer
+pip install transformers sentencepiece
 ```
 
-### Examples
-
-All the examples are based on the Bert version.
-
-#### Transformers
-
-##### TensorFlow 2.0
-
-```python
-from transformers import AutoConfig, BertTokenizer, TFBertForQuestionAnswering
-
-model_name = "SajjadAyoubi/bert-base-fa-qa"
-model = TFBertForQuestionAnswering.from_pretrained(model_name)
-config = AutoConfig.from_pretrained(model_name)
-tokenizer = BertTokenizer.from_pretrained(model_name)
-```
-
-##### PyTorch
-
-```python
-from transformers import AutoConfig, BertTokenizer, BertForQuestionAnswering
-
-model_name = "SajjadAyoubi/bert-base-fa-qa"
-model = BertForQuestionAnswering.from_pretrained(model_name)
-config = AutoConfig.from_pretrained(model_name)
-tokenizer = BertTokenizer.from_pretrained(model_name)
-```
+- All the examples are based on the Bert version but you can use other versions as well
 
 #### Pipelines
 
 In case you are not familiar with Transformers, you can use pipelines instead.
+  - pipelines can't have no answer for questions
 
 ```python
 from transformers import pipeline
 
 model_name = "SajjadAyoubi/bert-base-fa-qa"
-qa_pipeline = pipeline(
-    "question-answering",
-    model=model_name,
-    tokenizer=model_name,
-)
+qa_pipeline = pipeline("question-answering", model=model_name, tokenizer=model_name)
 
-context = "من سجاد ایوبی هستم. به پردازش زبان طبیعی علاقه دارم"
-question = "فامیلی من چیه؟"
+text = r"""سلام من سجاد ایوبی هستم ۲۰ سالمه و به پردازش زبان طبیعی علاقه دارم """
+questions = ["اسمم چیه؟", "چند سالمه؟", "به چی علاقه دارم؟"]
 
-qa_pipeline(
-    {
-        "context": context,
-        "question": question,
-    }
-)
+for i in questions:
+    print(qa_pipeline({"context": text, "question": question}))
 
-# >>> {answer: "ایوبی"}
-
+# >>> {answer: 'سجاد ایوبی'}
+# >>> {}
+# >>> {}
 ```
 
-#### Manual approach
-
-##### PyTorch
+#### Manual approach (PyTorch)
+- using Manual approach you can have no answer and better performance
 
 ```python
-
-import torch
 from transformers import AutoTokenizer, AutoModelForQuestionAnswering
+import torch
 
 model_name = "SajjadAyoubi/bert-base-fa-qa"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
-model = AutoModelForQuestionAnswering.from_pretrained(model_name).eval()
+model = AutoModelForQuestionAnswering.from_pretrained(model_name)
 
-text = "من سجاد ایوبی هستم. به پردازش زبان طبیعی علاقه دارم"
-questions = [
-    "فامیلی من چیه؟",
-    "به چی علاقه دارم؟",
-]
+text = r"""سلام من سجاد ایوبی هستم ۲۰ سالمه و به پردازش زبان طبیعی علاقه دارم """
+questions = ["اسمم چیه؟", "چند سالمه؟", "به چی علاقه دارم؟"]
 
-for question in questions:
-    inputs = tokenizer(
-        question,
-        text,
-        add_special_tokens=True,
-        return_tensors="pt",
-    )
-    input_ids = inputs["input_ids"].tolist()[0]
-
-    text_tokens = tokenizer.convert_ids_to_tokens(input_ids)
-    outputs = model(**inputs)
-
-    answer_start = torch.argmax(outputs.start_logits)
-    answer_end = torch.argmax(outputs.end_logits[0][answer_start:]) + answer_start + 1
-
-    answer = tokenizer.convert_tokens_to_string(
-        tokenizer.convert_ids_to_tokens(input_ids[answer_start:answer_end])
-    )
-    print(f"Question: {question}")
-    print(f"Answer: {answer}")
+# this class is from PersianQA/utils and you can read more about it
+infer = QAInference(model, tokenizer, device='cuda', n_best=10)
+preds = infer(questions, contexts*3, batch_size=3)
+print(preds)
 ```
 
 ##### TensorFlow 2.0
@@ -156,12 +84,17 @@ from transformers import AutoTokenizer, AutoTFModelForQuestionAnswering
 ```
 
 ### Evaluation
-
-#### On ParsiNLU
-
 Although, the GLEU metrics are not the best measures to evaluate the model on,
 the results are as shown below.
 
+- On ParsiNLU 
+|           Model            | F1 Score | Exact Match |
+| :------------------------: | :------: | :---------: |
+| Our version of XLM-Roberta |  73.44%  |   50.70%    |
+| Our version of ParsBERT    |  61.50%  |   43.70%    |
+
+
+- On PersianQA testset
 |           Model            | F1 Score | Exact Match |
 | :------------------------: | :------: | :---------: |
 | Our version of XLM-Roberta |  72.88%  |   50.70%    |
@@ -169,7 +102,6 @@ the results are as shown below.
 
 
 # Citation
-
 Yet, we didn't publish any papers on the work.
 However, if you did, please cite us properly with an entry like one below.
 
