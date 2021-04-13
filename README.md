@@ -17,10 +17,12 @@ Moreover, the first models trained on the dataset, Transformers, are available.
 
 Currently, two models on [HuggingFace🤗](https://huggingface.co/SajjadAyoubi/) are using the dataset.
 
-- [bert-base-fa-qa](https://huggingface.co/SajjadAyoubi/bert-base-fa-qa)
-  -  fine-tuned with PersianQA
-- [xlm-roberta-large-fa-qa](https://huggingface.co/SajjadAyoubi/xlm-roberta-large-fa-qa)
-  -  fine-tuned with SQuAD v2 + PersianQA
+
+|           Name             | Params | Training |
+| :------------------------: | :------: | :---------: |
+| [xlm-roberta-large-fa-qa](https://huggingface.co/SajjadAyoubi/xlm-roberta-large-fa-qa) |  250M  |   fine-tuned on SQuAD v2 + PersianQA   |
+| [bert-base-fa-qa](https://huggingface.co/SajjadAyoubi/bert-base-fa-qa)    |  100M  |  fine-tuned on PersianQA    |
+
 
 If you trained any model on the dataset, we'd be more than glad to hear the
 details. Please, make a pull request for that regards.
@@ -34,6 +36,7 @@ pip install transformers sentencepiece
 
 - All the examples are based on the Bert version but you can use other versions as well
 
+### How to use
 #### Pipelines 🚀
 
 In case you are not familiar with Transformers, you can use pipelines instead.
@@ -113,9 +116,10 @@ for k, v in preds.items():
 
 ### Evaluation
 Although, the GLEU metrics are not the best measures to evaluate the model on,
-the results are as shown below.
+the results are as shown below. TODO: Adding more disc
 
-#### On [ParsiNLU](https://github.com/persiannlp/parsinlu)
+#### Results
+##### On [ParsiNLU](https://github.com/persiannlp/parsinlu)
 - it contuns 570 question without (no answer)
 
 |           Model            | F1 Score | Exact Match |
@@ -124,7 +128,7 @@ the results are as shown below.
 | Our version of ParsBERT    |  62.60%  |   35.43%    |
 
 
-#### On PersianQA testset
+##### On PersianQA testset
 |           Model            | F1 Score | Exact Match |
 | :------------------------: | :------: | :---------: |
 | Our version of XLM-Roberta |  84.81%  |   70.40%    |
