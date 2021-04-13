@@ -2,13 +2,13 @@
 <a href="https://huggingface.co/"><img src="https://img.shields.io/static/v1?label=%F0%9F%A4%97%20Hugging%20Face&message=Click&color=yellow"></a>
 <a href="https://paperswithcode.com/"><img src="https://img.shields.io/static/v1?label=%F0%9F%93%8E%20Papers%20With%20Code&message=Click&color=21cbce"></a>
 
-# PersianQA: a dataset for Persian Question Answering ❔
+# PersianQA: a dataset for Persian Question Answering
 
 The dataset provided here has more than 9,000 training data and about 900 test data available.
 Moreover, the first models trained on the dataset, Transformers, are available.
 
 ## Data
-- Descriptions
+- Description
 - access
 - Example
 - Stats
@@ -115,18 +115,20 @@ for k, v in preds.items():
 Although, the GLEU metrics are not the best measures to evaluate the model on,
 the results are as shown below.
 
-#### On ParsiNLU 
+#### On [ParsiNLU](https://github.com/persiannlp/parsinlu)
+- it contuns 570 question without (no answer)
+
 |           Model            | F1 Score | Exact Match |
 | :------------------------: | :------: | :---------: |
-| Our version of XLM-Roberta |  78.59%  |   51.70%    |
+| Our version of XLM-Roberta |  78.59%  |   52.10%    |
 | Our version of ParsBERT    |  62.60%  |   35.43%    |
 
 
 #### On PersianQA testset
 |           Model            | F1 Score | Exact Match |
 | :------------------------: | :------: | :---------: |
-| Our version of XLM-Roberta |  72.88%  |   50.70%    |
-| Our version of ParsBERT    |  56.88%  |   43.70%    |
+| Our version of XLM-Roberta |  84.81%  |   70.40%    |
+| Our version of ParsBERT    |  70.06%  |   53.55%    |
 
 
 # Citation
