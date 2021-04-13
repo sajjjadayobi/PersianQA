@@ -87,17 +87,17 @@ for k, v in preds.items():
 
 - TensorFlow 2.X
 ```python
-from transformers import AutoTokenizer, AutoTFModelForQuestionAnswering
+from transformers import AutoTokenizer, TFAutoModelForQuestionAnswering
 
-model_name = "SajjadAyoubi/bert-base-fa-qa"
+model_name = '"SajjadAyoubi/bert-base-fa-qa"'
 tokenizer = AutoTokenizer.from_pretrained(model_name)
-model = AutoTFModelForQuestionAnswering.from_pretrained(model_name)
+model = TFAutoModelForQuestionAnswering.from_pretrained(model_name, from_pt=True)
 
-text = r"""سلام من سجاد ایوبی هستم ۲۰ سالمه و به پردازش زبان طبیعی علاقه دارم """
+text = "سلام من سجاد ایوبی هستم ۲۰ سالمه و به پردازش زبان طبیعی علاقه دارم "
 questions = ["اسمم چیه؟", "چند سالمه؟", "به چی علاقه دارم؟"]
 
-# this class is from src/utils.py and you can read more about it
-predictor = TFAnswerPredictor(model, tokenizer, device='cpu', n_best=10)
+# this class is from src/utils.py, you can read more about it
+predictor = TFAnswerPredictor(model, tokenizer, n_best=10)
 preds = predictor(questions, [text]*3, batch_size=3)
 
 for k, v in preds.items():
