@@ -77,7 +77,7 @@ preds = predictor(questions, [text]*3, batch_size=3)
 for k, v in preds.items():
     print(v)
 ```
-  - output is
+  - the output is
   ```sh
   100%|██████████| 1/1 [00:00<00:00,  3.56it/s]
   {'score': 8.040637016296387, 'text': 'سجاد ایوبی'}
@@ -103,7 +103,7 @@ preds = predictor(questions, [text]*3, batch_size=3)
 for k, v in preds.items():
     print(v)
 ```
-  - output is
+  - the output is
   ```sh
   100%|██████████| 1/1 [00:00<00:00,  3.56it/s]
   {'score': 8.040637016296387, 'text': 'سجاد ایوبی'}
@@ -118,7 +118,7 @@ the results are as shown below.
 #### On ParsiNLU 
 |           Model            | F1 Score | Exact Match |
 | :------------------------: | :------: | :---------: |
-| Our version of XLM-Roberta |  73.44%  |   50.70%    |
+| Our version of XLM-Roberta |  78.59%  |   51.70%    |
 | Our version of ParsBERT    |  62.60%  |   35.43%    |
 
 
