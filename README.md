@@ -2,7 +2,7 @@
 <a href="https://huggingface.co/"><img src="https://img.shields.io/static/v1?label=%F0%9F%A4%97%20Hugging%20Face&message=Click&color=yellow"></a>
 <a href="https://paperswithcode.com/"><img src="https://img.shields.io/static/v1?label=%F0%9F%93%8E%20Papers%20With%20Code&message=Click&color=21cbce"></a>
 
-# PersianQA: a dataset for Persian Question Answering
+# PersianQA: a dataset for Persian Question Answering ❔
 
 The dataset provided here has more than 9,000 training data and about 900 test data available.
 Moreover, the first models trained on the dataset, Transformers, are available.
@@ -15,7 +15,7 @@ Moreover, the first models trained on the dataset, Transformers, are available.
 
 ## Models
 
-Currently, two models on [Hugging Face](https://huggingface.co/SajjadAyoubi/) are using the dataset.
+Currently, two models on [HuggingFace🤗](https://huggingface.co/SajjadAyoubi/) are using the dataset.
 
 - [bert-base-fa-qa](https://huggingface.co/SajjadAyoubi/bert-base-fa-qa)
   -  fine-tuned with PersianQA
@@ -34,7 +34,7 @@ pip install transformers sentencepiece
 
 - All the examples are based on the Bert version but you can use other versions as well
 
-#### Pipelines
+#### Pipelines 🚀
 
 In case you are not familiar with Transformers, you can use pipelines instead.
   - pipelines can't have no answer for questions
@@ -56,7 +56,7 @@ for question in questions:
 # >>> {'score': 0.5945395827293396, 'start': 38, 'end': 55, 'answer': 'پردازش زبان طبیعی'}
 ```
 
-#### Manual approach
+#### Manual approach 🔥
 using Manual approach you can have no answer and better performance
 
 - Pytorch
