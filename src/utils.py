@@ -5,18 +5,18 @@ import torch
 
 class AnswerPredictor:
   def __init__(self, model, tokenizer, device='cuda', n_best=10, max_length=512, stride=256, no_answer=False):
-      """
-      PyTorch Question Answering Prediction
-      if you are not familiar with these, default args work best
+      """Initializes PyTorch Question Answering Prediction
+
+      It's best to leave use the default values.
 
       Args:
-        model: fine-tuned torch model
-        tokenizer: transformers tokenizer
-        device: running device (torch.device)
-        n_best: number of best possible answers (int)
-        max_length: tokenizer max length (int)
-        stride: tokenizer stride (int)
-        no_answer: model can say there is no answer (bool)
+          model: Fine-tuned torch model
+          tokenizer: Transformers tokenizer
+          device (torch.device): Running device
+          n_best (int): Number of best possible answers
+          max_length (int): Tokenizer max length
+          stride (int): Tokenizer stride
+          no_answer (bool): If True, model can return "no answer"
       """
       self.model = model.eval().to(device)
       self.tokenizer = tokenizer
@@ -51,16 +51,17 @@ class AnswerPredictor:
 
 
   def __call__(self, questions, contexts, batch_size=1, answer_max_len=100):
-      """ create model prediction 
+      """Creates model prediction
+      
       Args: 
-        questions: list of string questions
-        contexts: list of string contexts
-        batch_size: number of batch size
-        answer_max_len: the biggest possible answer
+          questions (list): Question strings
+          contexts (list): Contexts strings
+          batch_size (int): Batch size
+          answer_max_len (int): Sets the longests possible length for any answer
         
       Returns:
-        preds: best model predictions (dict)
-            {0: {"text": str, "score": int}}
+          dict: The best prediction of the model
+              (e.g {0: {"text": str, "score": int}})
       """
       tokens, starts, ends = self.model_pred(questions, contexts, batch_size=batch_size)
       start_indexes = starts.argsort(dim=-1, descending=True)[:, :self.n_best]
@@ -112,18 +113,18 @@ import tensorflow as tf
 
 class TFAnswerPredictor:
   def __init__(self, model, tokenizer, n_best=10, max_length=512, stride=256, no_answer=False):
-      """
-      Tensorflow Question Answering Prediction
-      if you are not familiar with these, default args work best
+      """Initializes Tensorflow Question Answering Prediction
+
+      It's best to leave use the default values.
 
       Args:
-        model: fine-tuned tensorflow.keras model
-        tokenizer: transformers tokenizer
-        device: running device (torch.device)
-        n_best: number of best possible answers (int)
-        max_length: tokenizer max length (int)
-        stride: tokenizer stride (int)
-        no_answer: model can say there is no answer (bool)
+          model: Fine-tuned tensorflow.keras model
+          tokenizer: Transformers tokenizer
+          device (torch.device): Running device
+          n_best (int): Number of best possible answers
+          max_length (int): Tokenizer max length
+          stride (int): Tokenizer stride
+          no_answer (bool): If True, model can return "no answer"
       """
       self.model = model
       self.tokenizer = tokenizer
@@ -158,16 +159,17 @@ class TFAnswerPredictor:
 
 
   def __call__(self, questions, contexts, batch_size=1, answer_max_len=100):
-      """ create model prediction 
+      """Creates model prediction
+            
       Args: 
-        questions: list of string questions
-        contexts: list of string contexts
-        batch_size: number of batch size
-        answer_max_len: the biggest possible answer
+          questions (list): Question strings
+          contexts (list): Contexts strings
+          batch_size (int): Batch size
+          answer_max_len (int): Sets the longests possible length for any answer
         
       Returns:
-        preds: best model predictions (dict)
-            {0: {"text": str, "score": int}}
+          dict: The best prediction of the model
+              (e.g {0: {"text": str, "score": int}})
       """
       tokens, starts, ends = self.model_pred(questions, contexts, batch_size=batch_size)
       start_indexes = tf.argsort(starts, axis=-1, direction='DESCENDING')[:, :self.n_best]
