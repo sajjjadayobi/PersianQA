@@ -121,10 +121,11 @@ for k, v in preds.items():
 Or you can access the whole demonstration using this [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/sajjjadayobi/PersianQA/blob/main/notebooks/HowToUse.ipynb)
 
 ### Evaluation
-Although, the GLEU metrics are not the best measures to evaluate the model on,
-the results are as shown below. TODO: Adding more disc
+To evaluate your models, we have also made available the evaluation [**script**](https://github.com/sajjjadayobi/PersianQA/blob/main/src/evaluation.py)
 
 #### Results
+Although, the GLEU metrics are not the best measures to evaluate the model on,
+the results are as shown below.
 ##### On [ParsiNLU](https://github.com/persiannlp/parsinlu)
 - it contuns 570 question without (unanswerable questions)
 
@@ -142,7 +143,7 @@ the results are as shown below. TODO: Adding more disc
 ##### On PersianQA testset
 |           Model            | F1 Score | Exact Match | Params |
 | :------------------------: | :------: | :---------: | :----: |
-|   XLM-Roberta-Large(Ours)  |  84.81%  |   70.40%    |  558M  |
+|   XLM-Roberta-Large(Ours)  |  **84.81%**  |   70.40%    |  558M  |
 |       ParsBERT(Ours)       |  70.06%  |   53.55%    |  162M  |
 
 
