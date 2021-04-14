@@ -1,9 +1,9 @@
 from pathlib import Path
-
+import json
 
 def read_qa(path):
     """
-    this reads dataset from json files like SQuAD v2
+    this reads dataset from JSON files like SQuAD v2
     you can use this function for loading train and test file
     """
     ds = []
@@ -27,11 +27,9 @@ def read_qa(path):
 
 
 
-  
-# example  
 if __name__ == "__main__":
-    train_ds = read_qa('PersianQA-train.json')
-    valid_ds = read_qa('PersianQA-valid.json')
+    train_ds = read_qa('pqa_train.json')
+    test_ds  = read_qa('pqa_test.json')
     
     # Example
     print(train_ds[0])
