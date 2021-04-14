@@ -9,7 +9,7 @@ Moreover, the first models trained on the dataset, Transformers, are available.
 - you can check out the online demo [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/sajjjadayobi/PersianQA/blob/main/notebooks/Demo.ipynb)
 
 
-## Data
+## Dataset Information
 - Description
 - access
 - Example
@@ -19,20 +19,22 @@ Moreover, the first models trained on the dataset, Transformers, are available.
 | :------------------------: | :--------------: | :----------------: | :------------------: | :-------------------: | :----------------: |
 |           Train            |       9,000      |        2,700       |         8.39         |         224.58        |        9.61        |
 |           Test             |        938       |         280        |         8.02         |         220.18        |        5.99        |
+- the lengths are on toekn level
 
 ## Models
-
-Currently, two models on [HuggingFace🤗](https://huggingface.co/SajjadAyoubi/) are using the dataset.
-
+Currently, two models (baseline) on [HuggingFace🤗](https://huggingface.co/SajjadAyoubi/) model hub are using the dataset.
+- list of models
 
 |           Name             | Params | Training |
 | :------------------------: | :------: | :---------: |
 | [xlm-roberta-large-fa-qa](https://huggingface.co/SajjadAyoubi/xlm-roberta-large-fa-qa) |  558M  |   fine-tuned on SQuAD v2 + PersianQA   |
 | [bert-base-fa-qa](https://huggingface.co/SajjadAyoubi/bert-base-fa-qa)    |  162M  |  fine-tuned on PersianQA    |
 
+- You can also try our existing models. Visit [this]() page to see an example.
 
-If you trained any model on the dataset, we'd be more than glad to hear the
-details. Please, make a pull request for that regards.
+
+**If you trained any model on the dataset, we'd be more than glad to hear the
+details. Please, make a pull request for that regards.**
 
 
 ### How to use
@@ -126,8 +128,10 @@ Or you can access the whole demonstration using this [![Open In Colab](https://c
 To evaluate your models, we have also made available the evaluation [**script**](https://github.com/sajjjadayobi/PersianQA/blob/main/src/evaluation.py)
 
 #### Results
+TODO: waht are these metrics
 Although, the GLEU metrics are not the best measures to evaluate the model on,
 the results are as shown below.
+Best baseline scores are indicated as bold
 ##### On [ParsiNLU](https://github.com/persiannlp/parsinlu)
 - it contuns 570 question without (unanswerable questions)
 
@@ -163,3 +167,7 @@ However, if you did, please cite us properly with an entry like one below.
   howpublished    = {\url{https://github.com/SajjjadAyobi/PersianQA}},
 }
 ```
+
+## Acknowledgement
+- The authors would like to thank Navid Kanani and Abbas Ayoubi
+- Thanks to Google’s Colab😄 and HuggingFace🤗 for making this work easier 
