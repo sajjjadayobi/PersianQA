@@ -5,7 +5,9 @@
 # PersianQA: a dataset for Persian Question Answering
 
 The dataset provided here has more than 9,000 training data and about 900 test data available.
-Moreover, the first models trained on the dataset, Transformers, are available.
+Moreover, the first models trained on the dataset, Transformers, are available. 
+- you can check out the online demo [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/sajjjadayobi/PersianQA/blob/main/notebooks/Demo.ipynb)
+
 
 ## Data
 - Description
