@@ -13,10 +13,10 @@ Moreover, the first models trained on the dataset, Transformers, are available.
 - Example
 - Statistic
 
-|           Split            | # of instances   | avg. question length | avg. paragraph length | avg. answer length |
-| :------------------------: | :--------------: | :------------------: | :-------------------: | :----------------: |
-|           Train            |       9,000      |         8.39         |         224.58        |        9.61        |
-|           Test             |       938        |         8.02         |         220.18        |        5.99        |
+|           Split            | # of instances   | # of unanswerables | avg. question length | avg. paragraph length | avg. answer length |
+| :------------------------: | :--------------: | :----------------: | :------------------: | :-------------------: | :----------------: |
+|           Train            |       9,000      |        2,700       |         8.39         |         224.58        |        9.61        |
+|           Test             |        938       |         280        |         8.02         |         220.18        |        5.99        |
 
 ## Models
 
@@ -32,16 +32,15 @@ Currently, two models on [HuggingFace🤗](https://huggingface.co/SajjadAyoubi/)
 If you trained any model on the dataset, we'd be more than glad to hear the
 details. Please, make a pull request for that regards.
 
-- Installation
 
+### How to use
+- All the examples are based on the Bert version but you can use other versions as well
+- Installation
 Transformers require `transformers` and `sentencepiece`, which can be installed using `pip`.
 ```sh
 pip install transformers sentencepiece
 ```
 
-- All the examples are based on the Bert version but you can use other versions as well
-
-### How to use
 #### Pipelines 🚀
 
 In case you are not familiar with Transformers, you can use pipelines instead.
@@ -130,7 +129,7 @@ the results are as shown below. TODO: Adding more disc
 |           Model            | F1 Score | Exact Match | Params |
 | :------------------------: | :------: | :---------: | :----: |
 |           Human            |  86.2%   |     -       |    -     |
-|      XLM-Roberta(Ours)     |  **78.6%**   |   52.10%    |  558M |  
+|  XLM-Roberta-Large(Ours)   |  **78.6%**   |   52.10%    |  558M |  
 |       ParsBERT(Ours)       |  62.6%   |   35.43%    |  162M  |
 |    mT5-small (ParsiNLU)    |  28.6%   |     -       |  300M  |
 |    mT5-base (ParsiNLU)     |  43.0%   |     -       |  582M  |
@@ -141,8 +140,8 @@ the results are as shown below. TODO: Adding more disc
 ##### On PersianQA testset
 |           Model            | F1 Score | Exact Match | Params |
 | :------------------------: | :------: | :---------: | :----: |
-| Our version of XLM-Roberta |  84.81%  |   70.40%    |  558M  |
-| Our version of ParsBERT    |  70.06%  |   53.55%    |  162M  |
+|   XLM-Roberta-Large(Ours)  |  84.81%  |   70.40%    |  558M  |
+|       ParsBERT(Ours)       |  70.06%  |   53.55%    |  162M  |
 
 
 # Citation
