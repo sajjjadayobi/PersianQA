@@ -20,8 +20,8 @@ Currently, two models on [HuggingFace🤗](https://huggingface.co/SajjadAyoubi/)
 
 |           Name             | Params | Training |
 | :------------------------: | :------: | :---------: |
-| [xlm-roberta-large-fa-qa](https://huggingface.co/SajjadAyoubi/xlm-roberta-large-fa-qa) |  250M  |   fine-tuned on SQuAD v2 + PersianQA   |
-| [bert-base-fa-qa](https://huggingface.co/SajjadAyoubi/bert-base-fa-qa)    |  100M  |  fine-tuned on PersianQA    |
+| [xlm-roberta-large-fa-qa](https://huggingface.co/SajjadAyoubi/xlm-roberta-large-fa-qa) |  558M  |   fine-tuned on SQuAD v2 + PersianQA   |
+| [bert-base-fa-qa](https://huggingface.co/SajjadAyoubi/bert-base-fa-qa)    |  162M  |  fine-tuned on PersianQA    |
 
 
 If you trained any model on the dataset, we'd be more than glad to hear the
@@ -84,7 +84,7 @@ for k, v in preds.items():
   ```sh
   100%|██████████| 1/1 [00:00<00:00,  3.56it/s]
   {'score': 8.040637016296387, 'text': 'سجاد ایوبی'}
-  {'score': 9.901972770690918, 'text': '۲۰ سالمه'}
+  {'score': 9.901972770690918, 'text': '۲۰'}
   {'score': 12.117212295532227, 'text': 'پردازش زبان طبیعی'}
   ```
 
@@ -110,7 +110,7 @@ for k, v in preds.items():
   ```sh
   100%|██████████| 1/1 [00:00<00:00,  3.56it/s]
   {'score': 8.040637016296387, 'text': 'سجاد ایوبی'}
-  {'score': 9.901972770690918, 'text': '۲۰ سالمه'}
+  {'score': 9.901972770690918, 'text': '۲۰'}
   {'score': 12.117212295532227, 'text': 'پردازش زبان طبیعی'}
   ```
 
@@ -120,19 +120,24 @@ the results are as shown below. TODO: Adding more disc
 
 #### Results
 ##### On [ParsiNLU](https://github.com/persiannlp/parsinlu)
-- it contuns 570 question without (no answer)
+- it contuns 570 question without (unanswerable questions)
 
-|           Model            | F1 Score | Exact Match |
-| :------------------------: | :------: | :---------: |
-| Our version of XLM-Roberta |  78.59%  |   52.10%    |
-| Our version of ParsBERT    |  62.60%  |   35.43%    |
+|           Model            | F1 Score | Exact Match | Params |
+| :------------------------: | :------: | :---------: | :----: |
+|           Human            |  86.2%   |     -       |    -     |
+| Our version of XLM-Roberta |  **78.6%**   |   52.10%    |  558M |  
+| Our version of ParsBERT    |  62.6%   |   35.43%    |  162M  |
+|    mT5-small (ParsiNLU)    |  28.6%   |     -       |  300M  |
+|    mT5-base (ParsiNLU)     |  43.0%   |     -       |  582M  |
+|    mT5-large (ParsiNLU)    |  60.1%   |     -       |  1.2B  |
+|     mT5-XL (ParsiNLU)      |  65.5%   |     -       |    -   |
 
 
 ##### On PersianQA testset
-|           Model            | F1 Score | Exact Match |
-| :------------------------: | :------: | :---------: |
-| Our version of XLM-Roberta |  84.81%  |   70.40%    |
-| Our version of ParsBERT    |  70.06%  |   53.55%    |
+|           Model            | F1 Score | Exact Match | Params |
+| :------------------------: | :------: | :---------: | :----: |
+| Our version of XLM-Roberta |  84.81%  |   70.40%    |  558M  |
+| Our version of ParsBERT    |  70.06%  |   53.55%    |  162M  |
 
 
 # Citation
