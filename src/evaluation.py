@@ -46,8 +46,8 @@ print(metric.compute(predictions=formatted_preds, references=references))
 ## offical SQuADv2 evaluation script. Modifed slightly for this dataset
 
 def f1_score(prediction, ground_truth):
-    prediction_tokens = normalize_answer(prediction).split()
-    ground_truth_tokens = normalize_answer(ground_truth).split()
+    prediction_tokens = cleaner(prediction)
+    ground_truth_tokens = cleaner(ground_truth)
     common = Counter(prediction_tokens) & Counter(ground_truth_tokens)
     num_same = sum(common.values())
     if num_same == 0:
