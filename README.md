@@ -13,10 +13,10 @@ Moreover, the first models trained on the dataset, Transformers, are available.
 - Example
 - Statistic
 
-|           Split            | avg. question length | avg. paragraph length | avg. answer length |
-| :------------------------: | :------------------: | :-------------------: | :----------------: |
-|           Train            |          -           |           -           |         -          |
-|           Test             |          -           |           -           |         -          |
+|           Split            | # of instances   | avg. question length | avg. paragraph length | avg. answer length |
+| :------------------------: | :--------------: | :------------------: | :-------------------: | :----------------: |
+|           Train            |       9,000      |         8.39         |         224.58        |        9.61        |
+|           Test             |       938        |         8.02         |         220.18        |        5.99        |
 
 ## Models
 
