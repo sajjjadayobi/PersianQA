@@ -1,5 +1,14 @@
+from collections import OrderedDict
 from pathlib import Path
 import json
+
+
+def c2dict(ds):
+    """ convert dataset to orderdict """
+    return OrderedDict([('answers', [i['answers'] for i in ds]), 
+                        ('context', [i['context'] for i in ds]), 
+                        ('question', [i['question'] for i in ds])])
+
 
 def read_qa(path):
     """
