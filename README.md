@@ -74,7 +74,7 @@ model_name = "SajjadAyoubi/bert-base-fa-qa"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForQuestionAnswering.from_pretrained(model_name)
 
-text = r"""سلام من سجاد ایوبی هستم ۲۰ سالمه و به پردازش زبان طبیعی علاقه دارم """
+text = "سلام من سجاد ایوبی هستم ۲۰ سالمه و به پردازش زبان طبیعی علاقه دارم "
 questions = ["اسمم چیه؟", "چند سالمه؟", "به چی علاقه دارم؟"]
 
 # this class is from src/utils.py and you can read more about it
@@ -98,7 +98,7 @@ from transformers import AutoTokenizer, TFAutoModelForQuestionAnswering
 
 model_name = '"SajjadAyoubi/bert-base-fa-qa"'
 tokenizer = AutoTokenizer.from_pretrained(model_name)
-model = TFAutoModelForQuestionAnswering.from_pretrained(model_name, from_pt=True)
+model = TFAutoModelForQuestionAnswering.from_pretrained(model_name)
 
 text = "سلام من سجاد ایوبی هستم ۲۰ سالمه و به پردازش زبان طبیعی علاقه دارم "
 questions = ["اسمم چیه؟", "چند سالمه؟", "به چی علاقه دارم؟"]
@@ -117,6 +117,8 @@ for k, v in preds.items():
   {'score': 9.901972770690918, 'text': '۲۰'}
   {'score': 12.117212295532227, 'text': 'پردازش زبان طبیعی'}
   ```
+
+Or you can access the whole demonstration using this [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/sajjjadayobi/PersianQA/blob/main/notebooks/HowToUse.ipynb)
 
 ### Evaluation
 Although, the GLEU metrics are not the best measures to evaluate the model on,
