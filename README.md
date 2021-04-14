@@ -11,7 +11,12 @@ Moreover, the first models trained on the dataset, Transformers, are available.
 - Description
 - access
 - Example
-- Stats
+- Statistic
+
+|           Split            | avg. question length | avg. paragraph length | avg. answer length |
+| :------------------------: | :------------------: | :-------------------: | :----------------: |
+|           Train            |          -           |           -           |         -          |
+|           Test             |          -           |           -           |         -          |
 
 ## Models
 
@@ -125,13 +130,13 @@ the results are as shown below. TODO: Adding more disc
 |           Model            | F1 Score | Exact Match | Params |
 | :------------------------: | :------: | :---------: | :----: |
 |           Human            |  86.2%   |     -       |    -     |
-| Our version of XLM-Roberta |  **78.6%**   |   52.10%    |  558M |  
-| Our version of ParsBERT    |  62.6%   |   35.43%    |  162M  |
+|      XLM-Roberta(Ours)     |  **78.6%**   |   52.10%    |  558M |  
+|       ParsBERT(Ours)       |  62.6%   |   35.43%    |  162M  |
 |    mT5-small (ParsiNLU)    |  28.6%   |     -       |  300M  |
 |    mT5-base (ParsiNLU)     |  43.0%   |     -       |  582M  |
 |    mT5-large (ParsiNLU)    |  60.1%   |     -       |  1.2B  |
-|     mT5-XL (ParsiNLU)      |  65.5%   |     -       |    -   |
-
+|     mT5-XL (ParsiNLU)      |  65.5%   |     -       |   -    |
+ 
 
 ##### On PersianQA testset
 |           Model            | F1 Score | Exact Match | Params |
