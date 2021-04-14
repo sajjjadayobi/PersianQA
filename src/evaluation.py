@@ -1,7 +1,9 @@
+# local imports
 from utils import AnswerPredictor
 from load_ds import read_qa, c2dict
 
-from transformers import AutoConfig, AutoModelForQuestionAnswering
+# offial imports
+from transformers import AutoTokenizer, AutoModelForQuestionAnswering
 from datasets import load_metric
 from collections import Counter
 import re
@@ -40,7 +42,7 @@ references = [{"id": str(i),
 print(metric.compute(predictions=formatted_preds, references=references))
 
 
-# ----------------------------------------------------------------- Method Two (offical SQuADv2)
+# ------------------------------------------------------------------- Method Two (offical SQuADv2)
 ## offical SQuADv2 evaluation script. Modifed slightly for this dataset
 
 def f1_score(prediction, ground_truth):
@@ -72,13 +74,13 @@ def metric_max_over_ground_truths(metric_fn, prediction, ground_truths):
 def evaluate(gold_answers, predictions):
     f1 = exact_match = total = 0
     for ground_truths, prediction in zip(gold_answers, predictions):
-      total += 1
-      exact_match += metric_max_over_ground_truths(exact_match_score, prediction, ground_truths)
-      f1 += metric_max_over_ground_truths(f1_score, prediction, ground_truths)
+        total += 1
+        exact_match += metric_max_over_ground_truths(exact_match_score, prediction, ground_truths)
+        f1 += metric_max_over_ground_truths(f1_score, prediction, ground_truths)
     exact_match = 100.0 * exact_match / total
     f1 = 100.0 * f1 / total
     return {'exact_match': exact_match, 'f1': f1}
-  
+
   
 y_hat = [v['text'] for v in preds.values()]
 y = [v['text'] if len(v['text'])>0 else [''] for v in answers]
