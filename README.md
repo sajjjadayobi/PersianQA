@@ -12,7 +12,7 @@ dataset on [Persian Wikipedia](https://fa.wikipedia.org/). The crowd-sourced
 dataset consists of more than 9,000 entries. Each entry can be either an
 _impossible to answer_ or a question with one or more answers spanning in the
 passage (the _context_) from which the questioner proposed the question.
-Much like the SQuAD dataset, the impossible or _unanswerable_ questions can be
+Much like the SQuAD2.0 dataset, the impossible or _unanswerable_ questions can be
 utilized to create a system which "knows that it doesn't know the answer".
 
 On top of that, the dataset has 900 test data available.
@@ -25,7 +25,7 @@ mentioning that the contexts are collected from all categories of the Wiki
 At the moment, each context has 7 pairs of questions with one answer and 3
 impossible questions.
 
-As mentioned before, the dataset is inspired by the famous SQuAD dataset and is
+As mentioned before, the dataset is inspired by the famous SQuAD2.0 dataset and is
 compatible with and can be merged into it. But that's not all, the dataset here
 has some relative advantages to the original SQuAD, some of which are listed below:
 
@@ -58,7 +58,7 @@ The models are listed in the table below.
 
 |                                          Name                                          | Params |              Training              |
 | :------------------------------------------------------------------------------------: | :----: | :--------------------------------: |
-| [xlm-roberta-large-fa-qa](https://huggingface.co/SajjadAyoubi/xlm-roberta-large-fa-qa) |  558M  | fine-tuned on SQuAD v2 + PersianQA |
+| [xlm-roberta-large-fa-qa](https://huggingface.co/SajjadAyoubi/xlm-roberta-large-fa-qa) |  558M  | fine-tuned on SQuAD2.0 + PersianQA |
 |         [bert-base-fa-qa](https://huggingface.co/SajjadAyoubi/bert-base-fa-qa)         |  162M  |      fine-tuned on PersianQA       |
 
 You can try out our existing models and study examples. For more information
@@ -92,7 +92,7 @@ from transformers import pipeline
 model_name = "SajjadAyoubi/bert-base-fa-qa"
 qa_pipeline = pipeline("question-answering", model=model_name, tokenizer=model_name)
 
-text = r"""سلام من سجاد ایوبی هستم ۲۰ سالمه و به پردازش زبان طبیعی علاقه دارم """
+text = "سلام من سجاد ایوبی هستم ۲۰ سالمه و به پردازش زبان طبیعی علاقه دارم "
 questions = ["اسمم چیه؟", "چند سالمه؟", "به چی علاقه دارم؟"]
 
 for question in questions:
@@ -142,7 +142,7 @@ Produces an output such below:
 ```python
 from transformers import AutoTokenizer, TFAutoModelForQuestionAnswering
 
-model_name = '"SajjadAyoubi/bert-base-fa-qa"'
+model_name = "SajjadAyoubi/bert-base-fa-qa"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = TFAutoModelForQuestionAnswering.from_pretrained(model_name)
 
@@ -221,4 +221,5 @@ However, if you did, please cite us properly with an entry like one below.
 
 ## Acknowledgment
 
-Thanks to _Navid Kanani_ and _Abbas Ayoubi_
+- Thanks to _Navid Kanani_ and _Abbas Ayoubi_
+- Thanks to Google’s Colab😄 and HuggingFace🤗 for making this work easier 
