@@ -247,6 +247,8 @@ However, if you did, please cite us properly with an entry like one below.
 ```
 
 ## Acknowledgment
+At last, the process of bringing this dataset up and providing it, much like any other work in the field, is a cumbersome and costly task.
+This was but a tiny help to Persian Open-Source community and we are sincerely wishing it provides inspiration and ground work for other Free projects.
 
 - Thanks to _Navid Kanani_ and _Abbas Ayoubi_
 - Thanks to Google’s Colab😄 and HuggingFace🤗 for making this work easier 
