@@ -181,6 +181,17 @@ Or you can access the whole demonstration using [HowToUse iPython Notebook on
 Google
 Colab](https://colab.research.google.com/github/sajjjadayobi/PersianQA/blob/main/notebooks/HowToUse.ipynb)
 
+### Experiment
+
+As far as we managed to experiment with the dataset, the best results always
+came from merging the dataset with other big datasets (in other languages) such
+as SQuAD using multilingual models.  Foremost, try to establish the "reading
+comprehension" concept in your idea with the larger dataset and then transfer
+the knowledge to Persian with this very dataset.
+
+However, this method is not only limited to this application and can be put to
+use in other domains and smaller datasets.
+
 ### Evaluation
 
 To evaluate your models, you can use the provided [evaluation script](https://github.com/sajjjadayobi/PersianQA/blob/main/src/evaluation.py).
