@@ -35,6 +35,8 @@ has some relative advantages to the original SQuAD, some of which are listed bel
 - Including _informal ("Mohaaverei")_ entries
 - More varied answers (names, locations, dates and more)
 
+We train a baseline model which achieves an F1 score of 78 and an exact match ratio of 52 on [ParsiNLU dataset]()
+
 You can check out an online [iPython Demo Notebook on Google Colab ](https://colab.research.google.com/github/sajjjadayobi/PersianQA/blob/main/notebooks/Demo.ipynb).
 
 ## Dataset Information
@@ -58,7 +60,7 @@ You can check out an online [iPython Demo Notebook on Google Colab ](https://col
 
 The lengths are on token level.
 
-- for more about data and more example see [this]()
+- for more about data and more example see [here](https://github.com/sajjjadayobi/PersianQA/tree/main/dataset#readme)
 
 ## Models
 
@@ -211,6 +213,11 @@ Best baseline scores are indicated as bold
 | :-------------------: | :--------: | :---------: | :----: |
 | Our XLM-Roberta-Large | **84.81%** |   70.40%    |  558M  |
 |     Our ParsBERT      |   70.06%   |   53.55%    |  162M  |
+
+## Contact us
+If you have a technical question regarding the dataset, code or publication, please create an issue in this repository. 
+This is the fastest way to reach us.
+<!-- TODO: we would be happy to hear from you about better models -->
 
 # Citation
 
