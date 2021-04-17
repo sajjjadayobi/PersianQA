@@ -1,6 +1,6 @@
 <span align="center">
     <a href="https://www.kaggle.com/"><img alt="Kaggle" src="https://img.shields.io/static/v1?label=Kaggle&message=Click&logo=Kaggle&color=20BEFF"/></a>
-    <a href="https://huggingface.co/"><img src="https://img.shields.io/static/v1?label=%F0%9F%A4%97%20Hugging%20Face&message=Click&color=yellow"></a>
+    <a href="https://huggingface.co/SajjadAyoubi/"><img src="https://img.shields.io/static/v1?label=%F0%9F%A4%97%20Hugging%20Face&message=Click&color=yellow"></a>
     <a href="https://paperswithcode.com/"><img src="https://img.shields.io/static/v1?label=%F0%9F%93%8E%20Papers%20With%20Code&message=Click&color=21cbce"></a>
     <a href="https://colab.research.google.com/github/sajjjadayobi/PersianQA/blob/main/notebooks/Demo.ipynb"><img src="https://img.shields.io/static/v1?label=Colab&message=Demo&logo=Google%20Colab&color=f9ab00"></a>
 </span>
@@ -44,7 +44,7 @@ You can check out an online [iPython Demo Notebook on Google Colab ](https://col
 ### Description
 ###  Access/Download
 
-- You can find the data under the [`dataset/`]() directory. and use it like this
+- You can find the data under the [`dataset/`](https://github.com/sajjjadayobi/PersianQA/tree/main/dataset) directory. and use it like this
 ```python
 import read_qa # is avalible at src/read_ds.py
 train_ds = read_qa('pqa_train.json')
@@ -93,10 +93,10 @@ The models are listed in the table below.
 
 
 You can try out our existing models and study examples. For more information
-on the examples, visit [this page]().
+on the examples, visit [this page](https://huggingface.co/SajjadAyoubi).
 
 **In case you have trained any model on the dataset, we'd be more than glad to
-hear the details. Please, make a pull request for that regards. Simple notebook for training baseline can be found [here]()**
+hear the details. Please, make a pull request for that regards. Simple notebook for training baseline can be found [here](https://github.com/sajjjadayobi/PersianQA/blob/main/notebooks/TrainBaseline.ipynb)**
 
 ### How to use
 
@@ -251,7 +251,7 @@ If you have a technical question regarding the dataset, code or publication, ple
 This is the fastest way to reach us.
 <!-- TODO: we would be happy to hear from you about better models -->
 
-# Citation
+## Citation
 
 Yet, we didn't publish any papers on the work.
 However, if you did, please cite us properly with an entry like one below.
@@ -272,4 +272,4 @@ At last, the process of bringing this dataset up and providing it, much like any
 This was but a tiny help to Persian Open-Source community and we are sincerely wishing it provides inspiration and ground work for other Free projects.
 
 - Thanks to _Navid Kanani_ and _Abbas Ayoubi_
-- Thanks to Google’s Colab😄 and HuggingFace🤗 for making this work easier 
+- Thanks to Google’s Colab and HuggingFace🤗 for making this work easier 
