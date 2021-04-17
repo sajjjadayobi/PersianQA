@@ -43,6 +43,19 @@ You can check out an online [iPython Demo Notebook on Google Colab ](https://col
 
 - Description
 - Access
+    - You can find the data under the [`dataset/`]() directory. and use it like this
+    ```python
+    import read_qa # is avalible at src/read_ds.py
+    train_ds = read_qa('pqa_train.json')
+    test_ds  = read_qa('pqa_test.json')
+    ```
+    - Alternatively, you can also access the data through the HuggingFace🤗 library
+    ```python 
+    from datasets import load_dataset
+    dataset = load_dataset("SajjadAyoubi/persian_qa")
+    ```
+
+
 - Examples
 
 | Title |         Context         |  Question  | Answer |
