@@ -91,11 +91,12 @@ The models are listed in the table below.
 | [xlm-roberta-large-fa-qa](https://huggingface.co/SajjadAyoubi/xlm-roberta-large-fa-qa) |  558M  | fine-tuned on SQuAD2.0 + PersianQA |
 |         [bert-base-fa-qa](https://huggingface.co/SajjadAyoubi/bert-base-fa-qa)         |  162M  |      fine-tuned on PersianQA       |
 
+
 You can try out our existing models and study examples. For more information
 on the examples, visit [this page]().
 
 **In case you have trained any model on the dataset, we'd be more than glad to
-hear the details. Please, make a pull request for that regards.**
+hear the details. Please, make a pull request for that regards. Simple notebook for training baseline can be found [here]()**
 
 ### How to use
 
@@ -200,17 +201,6 @@ Or you can access the whole demonstration using [HowToUse iPython Notebook on
 Google
 Colab](https://colab.research.google.com/github/sajjjadayobi/PersianQA/blob/main/notebooks/HowToUse.ipynb)
 
-### Experiment
-
-As far as we managed to experiment with the dataset, the best results always
-came from merging the dataset with other big datasets (in other languages) such
-as SQuAD using multilingual models.  Foremost, try to establish the "reading
-comprehension" concept in your idea with the larger dataset and then transfer
-the knowledge to Persian with this very dataset.
-
-However, this method is not only limited to this application and can be put to
-use in other domains and smaller datasets.
-
 ### Evaluation
 
 To evaluate your models, you can use the provided [evaluation script](https://github.com/sajjjadayobi/PersianQA/blob/main/src/evaluation.py).
@@ -243,6 +233,18 @@ Best baseline scores are indicated as bold
 | :-------------------: | :--------: | :---------: | :----: |
 | Our XLM-Roberta-Large | **84.81%** |   70.40%    |  558M  |
 |     Our ParsBERT      |   70.06%   |   53.55%    |  162M  |
+
+
+## Experiment
+
+As far as we managed to experiment with the dataset, the best results always
+came from merging the dataset with other big datasets (in other languages) such
+as SQuAD using multilingual models.  Foremost, try to establish the "reading
+comprehension" concept in your idea with the larger dataset and then transfer
+the knowledge to Persian with this very dataset.
+
+However, this method is not only limited to this application and can be put to
+use in other domains and smaller datasets.
 
 ## Contact us
 If you have a technical question regarding the dataset, code or publication, please create an issue in this repository. 
