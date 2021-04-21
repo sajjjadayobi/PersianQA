@@ -12,7 +12,7 @@ dataset on [Persian Wikipedia](https://fa.wikipedia.org/). The crowd-sourced
 dataset consists of more than 9,000 entries. Each entry can be either an
 _impossible to answer_ or a question with one or more answers spanning in the
 passage (the _context_) from which the questioner proposed the question.
-Much like the SQuAD2.0 dataset, the impossible or _unanswerable_ questions can be
+Much like the `SQuAD2.0` dataset, the impossible or _unanswerable_ questions can be
 utilized to create a system which "knows that it doesn't know the answer".
 
 On top of that, the dataset has 900 test data available.
@@ -53,7 +53,7 @@ test_ds  = read_qa('pqa_test.json')
 ```sh
 pip install -q datasets
 ```
-- Then import persian_qa dataset using load_dataset:
+- Then import `persian_qa` dataset using `load_dataset`:
 ```python 
 from datasets import load_dataset
 dataset = load_dataset("SajjadAyoubi/persian_qa")
@@ -267,5 +267,5 @@ However, if you did, please cite us properly with an entry like one below.
 At last, the process of bringing this dataset up and providing it, much like any other work in the field, is a cumbersome and costly task.
 This was but a tiny help to Persian Open-Source community and we are sincerely wishing it provides inspiration and ground work for other Free projects.
 
-- Thanks to [_Navid Kanani]()_ and _Abbas Ayoubi_
+- Thanks to [_Navid Kanani_](https://github.com/navidkanaani) and _Abbas Ayoubi_
 - Thanks to Google Colab and HuggingFace🤗 for making this work easier 
