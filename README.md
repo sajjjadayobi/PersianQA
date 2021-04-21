@@ -35,13 +35,11 @@ has some relative advantages to the original SQuAD, some of which are listed bel
 - Including _informal ("Mohaaverei")_ entries
 - More varied answers (names, locations, dates and more)
 
-We train a baseline model which achieves an F1 score of 78 and an exact match ratio of 52 on [ParsiNLU dataset]()
+We train a baseline model which achieves an F1 score of 78 and an exact match ratio of 52 on [ParsiNLU](https://github.com/persiannlp/parsinlu)
 
 You can check out an online [iPython Demo Notebook on Google Colab ](https://colab.research.google.com/github/sajjjadayobi/PersianQA/blob/main/notebooks/Demo.ipynb).
 
-## Dataset Information
-
-### Description
+## Dataset 
 ###  Access/Download
 
 - You can find the data under the [`dataset/`](https://github.com/sajjjadayobi/PersianQA/tree/main/dataset) directory. and use it like this
@@ -51,7 +49,7 @@ train_ds = read_qa('pqa_train.json')
 test_ds  = read_qa('pqa_test.json')
 ```
 - Alternatively, you can also access the data through the HuggingFace🤗 datasets library
-    - First, you need to install datasets use this command in your terminal:
+    - First, you need to install datasets using this command in your terminal:
 ```sh
 pip install -q datasets
 ```
@@ -60,7 +58,6 @@ pip install -q datasets
 from datasets import load_dataset
 dataset = load_dataset("SajjadAyoubi/persian_qa")
 ```
-
 
 ### Examples
 
@@ -123,15 +120,15 @@ from transformers import pipeline
 model_name = "SajjadAyoubi/bert-base-fa-qa"
 qa_pipeline = pipeline("question-answering", model=model_name, tokenizer=model_name)
 
-text = "سلام من سجاد ایوبی هستم ۲۰ سالمه و به پردازش زبان طبیعی علاقه دارم "
+text = "سلام من سجاد ایوبی هستم ۲۰ سالمه و به پردازش زبان طبیعی علاقه دارم"
 questions = ["اسمم چیه؟", "چند سالمه؟", "به چی علاقه دارم؟"]
 
 for question in questions:
     print(qa_pipeline({"context": text, "question": question}))
 
-# >>> {'score': 0.4839823544025421, 'start': 8, 'end': 18, 'answer': 'سجاد ایوبی'}
-# >>> {'score': 0.3747948706150055, 'start': 24, 'end': 32, 'answer': '۲۰ سالمه'}
-# >>> {'score': 0.5945395827293396, 'start': 38, 'end': 55, 'answer': 'پردازش زبان طبیعی'}
+>>> {'score': 0.4839823544025421, 'start': 8, 'end': 18, 'answer': 'سجاد ایوبی'}
+>>> {'score': 0.3747948706150055, 'start': 24, 'end': 32, 'answer': '۲۰ سالمه'}
+>>> {'score': 0.5945395827293396, 'start': 38, 'end': 55, 'answer': 'پردازش زبان طبیعی'}
 ```
 
 #### Manual approach 🔥
@@ -143,12 +140,13 @@ performance.
 
 ```python
 from transformers import AutoTokenizer, AutoModelForQuestionAnswering
+from src.utils import AnswerPredictor
 
 model_name = "SajjadAyoubi/bert-base-fa-qa"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForQuestionAnswering.from_pretrained(model_name)
 
-text = "سلام من سجاد ایوبی هستم ۲۰ سالمه و به پردازش زبان طبیعی علاقه دارم "
+text = "سلام من سجاد ایوبی هستم ۲۰ سالمه و به پردازش زبان طبیعی علاقه دارم"
 questions = ["اسمم چیه؟", "چند سالمه؟", "به چی علاقه دارم؟"]
 
 # this class is from src/utils.py and you can read more about it
@@ -160,7 +158,6 @@ for k, v in preds.items():
 ```
 
 Produces an output such below:
-
 ```
 100%|██████████| 1/1 [00:00<00:00,  3.56it/s]
 {'score': 8.040637016296387, 'text': 'سجاد ایوبی'}
@@ -172,12 +169,13 @@ Produces an output such below:
 
 ```python
 from transformers import AutoTokenizer, TFAutoModelForQuestionAnswering
+from src.utils import TFAnswerPredictor
 
 model_name = "SajjadAyoubi/bert-base-fa-qa"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = TFAutoModelForQuestionAnswering.from_pretrained(model_name)
 
-text = "سلام من سجاد ایوبی هستم ۲۰ سالمه و به پردازش زبان طبیعی علاقه دارم "
+text = "سلام من سجاد ایوبی هستم ۲۰ سالمه و به پردازش زبان طبیعی علاقه دارم"
 questions = ["اسمم چیه؟", "چند سالمه؟", "به چی علاقه دارم؟"]
 
 # this class is from src/utils.py, you can read more about it
@@ -205,17 +203,15 @@ Colab](https://colab.research.google.com/github/sajjjadayobi/PersianQA/blob/main
 
 To evaluate your models, you can use the provided [evaluation script](https://github.com/sajjjadayobi/PersianQA/blob/main/src/evaluation.py).
 
-#### Results
-
-<!-- TODO: Explain what are these metrics -->
-
 Although, the GLEU metrics are not the best measures to evaluate the model on,
 the results are as shown below.
 Best baseline scores are indicated as bold
 
-##### On [ParsiNLU](https://github.com/persiannlp/parsinlu)
+#### On [ParsiNLU](https://github.com/persiannlp/parsinlu)
+ParsiNLU is a comprehensive suit of high-level NLP tasks for Persian language. 
+This suit contains 6 different key NLP tasks including Question Answering
 
-- it contuns 570 question without (unanswerable questions)
+- it contains 570 questions without (unanswerable questions)
 
 |         Model         | F1 Score  | Exact Match | Params |
 | :-------------------: | :-------: | :---------: | :----: |
@@ -227,7 +223,7 @@ Best baseline scores are indicated as bold
 | ParsiNLU's mT5-large  |   60.1%   |      -      |  1.2B  |
 |   ParsiNLU's mT5-XL   |   65.5%   |      -      |   -    |
 
-##### On PersianQA testset
+#### On PersianQA testset
 
 |         Model         |  F1 Score  | Exact Match | Params |
 | :-------------------: | :--------: | :---------: | :----: |
@@ -271,5 +267,5 @@ However, if you did, please cite us properly with an entry like one below.
 At last, the process of bringing this dataset up and providing it, much like any other work in the field, is a cumbersome and costly task.
 This was but a tiny help to Persian Open-Source community and we are sincerely wishing it provides inspiration and ground work for other Free projects.
 
-- Thanks to _Navid Kanani_ and _Abbas Ayoubi_
-- Thanks to Google’s Colab and HuggingFace🤗 for making this work easier 
+- Thanks to [_Navid Kanani]()_ and _Abbas Ayoubi_
+- Thanks to Google Colab and HuggingFace🤗 for making this work easier 
