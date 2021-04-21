@@ -1,8 +1,15 @@
+"""
+this script is for PyTorch but by a little change is works for Tensorflow as well
+changes are:
+    AutoModelForQuestionAnswering -> TFAutoModelForQuestionAnswering
+    AnswerPredictor -> TFAnswerPredictor
+"""
+
 # local imports
 from utils import AnswerPredictor
 from load_ds import read_qa, c2dict
 
-# offial imports
+# official imports
 from transformers import AutoTokenizer, AutoModelForQuestionAnswering
 from datasets import load_metric
 from collections import Counter
@@ -23,10 +30,10 @@ preds = predictor(questions, contexts, batch_size=12)
 # cleaner function
 def cleaner(text):
     return re.sub('\u200c', " ", text).strip()
-
   
 # -------------------------------------------------------------------- Method One (datasets.load_metric)
-metric = load_metric("squad_v2") # the dataset is like SQuADv2
+# SQuAD2.0 HuggingFace metrics 
+metric = load_metric("squad_v2") # the dataset is like SQuAD2.0
 
 formatted_preds = [{"id": str(k), 
                     "prediction_text": cleaner(v['text']),
@@ -38,13 +45,10 @@ references = [{"id": str(i),
                           'text': map(cleaner, a['text'])}}
               for i, a in enumerate(answers)]
 
-
 print(metric.compute(predictions=formatted_preds, references=references))
 
-
 # ------------------------------------------------------------------- Method Two (offical SQuADv2)
-## offical SQuADv2 evaluation script. Modifed slightly for this dataset
-
+# offical SQuAD2.0 evaluation script. Modifed slightly for this dataset
 def f1_score(prediction, ground_truth):
     prediction_tokens = cleaner(prediction)
     ground_truth_tokens = cleaner(ground_truth)
