@@ -12,8 +12,8 @@ def c2dict(ds):
 
 def read_qa(path):
     """
-    this reads dataset from JSON files like SQuAD v2
-    you can use this function for loading train and test file
+    this read dataset from JSON files like SQuAD2.0
+    you can use this function for loading train and test file (even SQuAD2.0)
     """
     ds = []
     with open(Path(path), encoding="utf-8") as f:
