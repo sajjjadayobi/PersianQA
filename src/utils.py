@@ -69,7 +69,7 @@ class AnswerPredictor:
 
       preds = {}
       for i, (c, q) in enumerate(zip(contexts, questions)):  
-          min_null_score = starts[i][0] + ends[i][0] # 0 is CLS Token
+          min_null_score = (starts[i][0] + ends[i][0]).item() # 0 is CLS Token
           start_context = tokens['input_ids'][i].tolist().index(self.tokenizer.sep_token_id)
           
           offset = tokens['offset_mapping'][i]
