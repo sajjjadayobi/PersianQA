@@ -1,5 +1,5 @@
 <span align="center">
-    <a href="https://www.kaggle.com/sajjadayobi360/persianqa"><img alt="Kaggle" src="https://img.shields.io/static/v1?label=Kaggle&message=Link&logo=Kaggle&color=20BEFF"/></a>
+    <a href="https://www.kaggle.com/sajjadayobi360/persianqa"><img alt="Kaggle" src="https://img.shields.io/static/v1?label=Kaggle&message=PersianQA&logo=Kaggle&color=20BEFF"/></a>
     <a href="https://huggingface.co/SajjadAyoubi/"><img src="https://img.shields.io/static/v1?label=%F0%9F%A4%97%20Hugging%20Face&message=SajjadAyoubi&color=yellow"></a>
     <a href="https://colab.research.google.com/github/sajjjadayobi/PersianQA/blob/main/notebooks/Demo.ipynb"><img src="https://img.shields.io/static/v1?label=Colab&message=Demo&logo=Google%20Colab&color=f9ab00"></a>
 </span>
