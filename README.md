@@ -1,7 +1,6 @@
 <span align="center">
-    <a href="https://www.kaggle.com/"><img alt="Kaggle" src="https://img.shields.io/static/v1?label=Kaggle&message=Link&logo=Kaggle&color=20BEFF"/></a>
+    <a href="https://www.kaggle.com/sajjadayobi360/persianqa"><img alt="Kaggle" src="https://img.shields.io/static/v1?label=Kaggle&message=Link&logo=Kaggle&color=20BEFF"/></a>
     <a href="https://huggingface.co/SajjadAyoubi/"><img src="https://img.shields.io/static/v1?label=%F0%9F%A4%97%20Hugging%20Face&message=SajjadAyoubi&color=yellow"></a>
-    <a href="https://paperswithcode.com/"><img src="https://img.shields.io/static/v1?label=%F0%9F%93%8E%20Papers%20With%20Code&message=Link&color=21cbce"></a>
     <a href="https://colab.research.google.com/github/sajjjadayobi/PersianQA/blob/main/notebooks/Demo.ipynb"><img src="https://img.shields.io/static/v1?label=Colab&message=Demo&logo=Google%20Colab&color=f9ab00"></a>
 </span>
 
@@ -39,7 +38,7 @@ are listed below:
 We train a baseline model which achieves an F1 score of 78 and an exact match
 ratio of 52 on [ParsiNLU](https://github.com/persiannlp/parsinlu).
 
-You can check out an online [iPython Demo Notebook on Google Colab
+You can check out an online [Demo on Google Colab
 ](https://colab.research.google.com/github/sajjjadayobi/PersianQA/blob/main/notebooks/Demo.ipynb).
 
 ## Dataset
@@ -67,6 +66,8 @@ Afterwards, import `persian_qa` dataset using `load_dataset`:
 from datasets import load_dataset
 dataset = load_dataset("SajjadAyoubi/persian_qa")
 ```
+
+- the dataset is also available at [Kaggle](https://www.kaggle.com/sajjadayobi360/persianqa)
 
 ### Examples
 
@@ -131,15 +132,14 @@ from transformers import pipeline
 model_name = "SajjadAyoubi/bert-base-fa-qa"
 qa_pipeline = pipeline("question-answering", model=model_name, tokenizer=model_name)
 
-text = "سلام من سجاد ایوبی هستم ۲۰ سالمه و به پردازش زبان طبیعی علاقه دارم"
-questions = ["اسمم چیه؟", "چند سالمه؟", "به چی علاقه دارم؟"]
+text = "سلام من سجاد ایوبی هستم و به پردازش زبان طبیعی علاقه دارم"
+questions = ["اسمم چیه؟", "علاقه مندیم چیه؟"]
 
 for question in questions:
     print(qa_pipeline({"context": text, "question": question}))
 
-# >>> {'score': 0.4839823544025421, 'start': 8, 'end': 18, 'answer': 'سجاد ایوبی'}
-# >>> {'score': 0.3747948706150055, 'start': 24, 'end': 32, 'answer': '۲۰ سالمه'}
-# >>> {'score': 0.5945395827293396, 'start': 38, 'end': 55, 'answer': 'پردازش زبان طبیعی'}
+# >>> {'score': 0.5183013081550598, 'start': 8, 'end': 18, 'answer': 'سجاد ایوبی'}
+# >>> {'score': 0.22757135331630707, 'start': 29, 'end': 46, 'answer': 'پردازش زبان طبیعی'}
 ```
 
 #### Manual approach 🔥
@@ -157,11 +157,11 @@ model_name = "SajjadAyoubi/bert-base-fa-qa"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForQuestionAnswering.from_pretrained(model_name)
 
-text = "سلام من سجاد ایوبی هستم ۲۰ سالمه و به پردازش زبان طبیعی علاقه دارم"
-questions = ["اسمم چیه؟", "چند سالمه؟", "به چی علاقه دارم؟"]
+text = "سلام من سجاد ایوبی هستم و به پردازش زبان طبیعی علاقه دارم"
+questions = ["اسمم چیه؟", "علاقه مندیم چیه؟", "من چند سالمه؟"]
 
 # this class is from src/utils.py and you can read more about it
-predictor = AnswerPredictor(model, tokenizer, device="cpu", n_best=10)
+predictor = AnswerPredictor(model, tokenizer, device="cpu", no_answer=True)
 preds = predictor(questions, [text] * 3, batch_size=3)
 
 for k, v in preds.items():
@@ -172,9 +172,9 @@ Produces an output such below:
 
 ```
 100%|██████████| 1/1 [00:00<00:00,  3.56it/s]
-{'score': 8.040637016296387, 'text': 'سجاد ایوبی'}
-{'score': 9.901972770690918, 'text': '۲۰'}
-{'score': 12.117212295532227, 'text': 'پردازش زبان طبیعی'}
+{'score': 9.57140064239502, 'text': 'سجاد ایوبی'}
+{'score': 9.273895263671875, 'text': 'پردازش زبان طبیعی'}
+{'score': 7.138418197631836, 'text': ''}
 ```
 
 - TensorFlow 2.X
@@ -187,11 +187,11 @@ model_name = "SajjadAyoubi/bert-base-fa-qa"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = TFAutoModelForQuestionAnswering.from_pretrained(model_name)
 
-text = "سلام من سجاد ایوبی هستم ۲۰ سالمه و به پردازش زبان طبیعی علاقه دارم"
-questions = ["اسمم چیه؟", "چند سالمه؟", "به چی علاقه دارم؟"]
+text = "سلام من سجاد ایوبی هستم و به پردازش زبان طبیعی علاقه دارم"
+questions = ["اسمم چیه؟", "علاقه مندیم چیه؟", "من چند سالمه؟"]
 
 # this class is from src/utils.py, you can read more about it
-predictor = TFAnswerPredictor(model, tokenizer, n_best=10)
+predictor = TFAnswerPredictor(model, tokenizer, no_answer=True)
 preds = predictor(questions, [text] * 3, batch_size=3)
 
 for k, v in preds.items():
@@ -202,12 +202,12 @@ Produces an output such below:
 
 ```text
 100%|██████████| 1/1 [00:00<00:00,  3.56it/s]
-{'score': 8.040637016296387, 'text': 'سجاد ایوبی'}
-{'score': 9.901972770690918, 'text': '۲۰'}
-{'score': 12.117212295532227, 'text': 'پردازش زبان طبیعی'}
+{'score': 9.57140064239502, 'text': 'سجاد ایوبی'}
+{'score': 9.273895263671875, 'text': 'پردازش زبان طبیعی'}
+{'score': 7.138418197631836, 'text': ''}
 ```
 
-Or you can access the whole demonstration using [HowToUse iPython Notebook on
+Or you can access the whole demonstration using [HowToUse Notebook on
 Google
 Colab](https://colab.research.google.com/github/sajjjadayobi/PersianQA/blob/main/notebooks/HowToUse.ipynb)
 
