@@ -67,7 +67,7 @@ from datasets import load_dataset
 dataset = load_dataset("SajjadAyoubi/persian_qa")
 ```
 
-- the dataset is also available at [Kaggle](https://www.kaggle.com/sajjadayobi360/persianqa)
+- The dataset is also available at [Kaggle](https://www.kaggle.com/sajjadayobi360/persianqa)
 
 ### Examples
 
